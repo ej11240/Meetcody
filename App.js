@@ -1,4 +1,5 @@
-import React, { useState, useContext } from 'react';
+import 'react-native-gesture-handler';
+import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import AppContext from './src/context/AppContext';
