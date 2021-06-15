@@ -1,5 +1,5 @@
 // @flow
-
+import * as React from 'react';
 import { StyleSheet } from 'react-native';
 
 const absoluteStretch = {
@@ -30,5 +30,8 @@ export default StyleSheet.create({
     ...absoluteStretch,
     backgroundColor: 'transparent',
   },
+  mainScreenHeadline:{
+    fontSize:14
+  }
 });
 
