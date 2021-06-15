@@ -14,6 +14,7 @@ export default function ResetPasswordScreen({ navigation }) {
             <Text>ResetPassword</Text>
             <Button onPress={() => navigation.navigate('SignUp')} title="SignUp" />
             <Button onPress={() => navigation.navigate('SignIn')} title="SignIn" />
+            <Button onPress={() => navigation.navigate('AxiosTest')} title="AxiosTest" />
         </View>
     );
 }

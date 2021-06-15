@@ -14,6 +14,7 @@ export default function SignUpScreen({ navigation }) {
       <Text>SignUp</Text>
       <Button onPress={() => navigation.navigate('SignIn')} title="SignIn" />
       <Button onPress={() => navigation.navigate('ResetPassword')} title="ResetPassword" />
+      <Button onPress={() => navigation.navigate('AxiosTest')} title="AxiosTest" />
     </View>
   );
 }

@@ -8,7 +8,7 @@ import SignInScreen from './src/screen/loginpage/SignInScreen';
 import SplashScreen from './src/screen/SplashScreen';
 import SignUpScreen from './src/screen/loginpage/SignUpScreen';
 import ResetPasswordScreen from './src/screen/loginpage/ResetPasswordScreen';
-
+import AxiosTestScreen from './src/screen/loginpage/AxiosTestScreen';
 
 export default function App() {
   const [isLoading, setIsLoading] = useState();
@@ -56,6 +56,7 @@ const authScreens = {
   SignUp: SignUpScreen,
   ResetPassword: ResetPasswordScreen,
   SignIn: SignInScreen,
+  AxiosTest: AxiosTestScreen,
 };
 
 const userScreens = {

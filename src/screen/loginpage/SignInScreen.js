@@ -16,6 +16,7 @@ export default function SignInScreen({ navigation }) {
             <Button onPress={() => myContext.setIsLoggedIn(true)} title='로그인 하기' />
             <Button onPress={() => navigation.navigate('SignUp')} title="SignUp" />
             <Button onPress={() => navigation.navigate('ResetPassword')} title="ResetPassword" />
+            <Button onPress={() => navigation.navigate('AxiosTest')} title="AxiosTest" />
         </View>
     );
 }
