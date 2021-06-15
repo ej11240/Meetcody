@@ -12,7 +12,7 @@ import AxiosTestScreen from './src/screen/loginpage/AxiosTestScreen';
 
 export default function App() {
   const [isLoading, setIsLoading] = useState();
-  const [userToken, setUserToken] = useState('');
+  const [userToken, setUserToken] = useState('유저토큰!!');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const userSettings = {
