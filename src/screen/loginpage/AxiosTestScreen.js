@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {
   View,
   Text,
@@ -7,8 +7,11 @@ import {
   StyleSheet,
 } from 'react-native';
 import axios from 'axios';
+import AppContext from '../../context/AppContext';
 
-const AxiosTestScreen = () => {
+const AxiosTestScreen = ({ navigation }) => {
+  const myContext = useContext(AppContext);
+
   const getDataUsingSimpleGetCall = () => {
     axios
       .get('https://jsonplaceholder.typicode.com/posts/1')
