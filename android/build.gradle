@@ -36,7 +36,3 @@ allprojects {
         maven { url 'https://www.jitpack.io' }
     }
 }
-project.ext.vectoricons = [
-    iconFontNames: [ 'Entypo.ttf' ] // Name of the font files you want to copy
-]
-apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
