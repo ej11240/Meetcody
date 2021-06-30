@@ -18,7 +18,7 @@ import {TouchableHighlight} from 'react-native-gesture-handler';
 
 const postDataUsingSimplePostCall = () => {
   axios
-    .post('start_input', {
+    .post('http://localhost:8081/start_input', {
       input1: "Sookmyung Women's University",
       input2: 'Chung-Ang University',
     })
@@ -126,10 +126,9 @@ export default function MainScreen({navigation}) {
         {/* <Text style={styles.mainScreenHeadline } allowFontScaling={false}>확정이 필요한 일정</Text> */}
         {/* <Text  >확정이 필요한 일정</Text> */}
 
-        <Image
-          source={require('../../asset/maintitle2.png')}
-          style={{height: 30, width: screenWidth}}
-        />
+        <TouchableHighlight onPress={()=>navigation.navigate("temp")} >
+          <Image source={require('../../asset/maintitle2.png')} style={{ height: 30, width: screenWidth }} />
+        </TouchableHighlight>
       </View>
     </View>
   );

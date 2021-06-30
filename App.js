@@ -10,6 +10,8 @@ import SignUpScreen from './src/screen/loginpage/SignUpScreen';
 import ResetPasswordScreen from './src/screen/loginpage/ResetPasswordScreen';
 import AxiosTestScreen from './src/screen/loginpage/AxiosTestScreen';
 import CreateMeetScreen from './src/screen/createpage/CreateMeetScreen';
+import tempScreen from './src/screen/loginpage/tempScreen';
+
 
 export default function App() {
   const [isLoading, setIsLoading] = useState();
@@ -58,6 +60,7 @@ const authScreens = {
   ResetPassword: ResetPasswordScreen,
   SignIn: SignInScreen,
   AxiosTest: AxiosTestScreen,
+  tempScreen: tempScreen,
 };
 
 const userScreens = {
