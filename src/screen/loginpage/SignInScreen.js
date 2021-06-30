@@ -17,6 +17,7 @@ export default function SignInScreen({ navigation }) {
             <Button onPress={() => navigation.navigate('SignUp')} title="SignUp" />
             <Button onPress={() => navigation.navigate('ResetPassword')} title="ResetPassword" />
             <Button onPress={() => navigation.navigate('AxiosTest')} title="AxiosTest" />
+            <Button onPress={() => navigation.navigate('tempScreen')} title="tempScreen" />
         </View>
     );
 }

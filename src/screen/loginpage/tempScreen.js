@@ -6,7 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import ActionBar from 'react-native-action-bar';
 import axios from 'axios';
 import { set } from 'lodash';
-import styles from './styles';
+import styles from '../mainpage/styles';
 import { TouchableHighlight, } from 'react-native-gesture-handler';
 
 const postDataUsingSimplePostCall = () => {
@@ -25,29 +25,60 @@ const postDataUsingSimplePostCall = () => {
       // alert(error.message);
       console.log(error.message)
     });
+  // axios.post('/login', { userId : "user.id", userPassword : "user.password" }) .then(function (response) { console.log(response); }) .catch(error => { console.log('error : ',error.response) });
 };
 
+// let stations=null;
 
-export default function MainScreen({ navigation }) {
+export default function tempScreen({ navigation }) {
   const myContext = useContext(AppContext);
   const [stations, setStations] = React.useState(null);
+  const [getapi, setGetapi] =React.useState(false);
+  let count1=0;
+  let count=0;
+  
+  React.useEffect(()=>{
+    axios.get('http://localhost:8080/subway',{maxRedirects:0})
+      .then(response => {
+        count1=count1+1;
+        setStations(response.data);
+        count=count+1;
+        console.log(count1+"\n");
+        // stations=response.data;
+      }) // SUCCESS
+      .catch(response => { console.log(response); }); // ERROR
+  },[getapi]);
+
   const [showmessage, setShowmessage] = React.useState(true);
   const showmessageFunc = () => {
     setShowmessage(!showmessage);
     console.log("눌림");
   }
   postDataUsingSimplePostCall();
+  // getData();
+  console.log(count+"\n");
+
+  const station = JSON.stringify(stations);
+  const array = station.split("\"");
+
 
   const imageFraudUrl = 'https://s3-meetcody.s3.ap-northeast-2.amazonaws.com/fakecreateimage.png';
-  // const ImageWidth = (imageFraudUrl) => {
-  //   const screenWidth = Dimensions.get('window').width;
-  //   const scaleFactor = width / screenWidth
-  //   const imageHeight = height / scaleFactor
-  //   this.setState({ imgWidth: screenWidth, imgHeight: imageHeight })
-
-  // };
+  
   const screenWidth = Dimensions.get('window').width;
 
+
+  const location = [];
+  for (let i = 0; i < array.length; i++) {
+    if ((i % 2) === 1) {
+      if (i === (array.length - 2))
+        location.push(array[i] + ' ' + array[i + 1].split('}')[0])
+      else
+        location.push(array[i] + ' ' + array[i + 1]);
+    }
+  }
+
+  console.log(location);
+  console.log(typeof(location[0]));
 
   const today = new Date();
   const date = today.getDate().toLocaleString();
@@ -56,14 +87,7 @@ export default function MainScreen({ navigation }) {
   let days = ["일", "월", "화", "수", "목", "금", "토"];
 
 
-
-  axios.get('http://localhost:8080/subway')
-    .then(response => {
-      // setStations(response.data);
-      const station = response.data;
-      console.log(station);
-    }) // SUCCESS
-    .catch(response => { console.log(response); }); // ERROR
+  
 
 
   return (
@@ -72,7 +96,7 @@ export default function MainScreen({ navigation }) {
       <ActionBar
         containerStyle={{ height: 100, alignSelf: 'center', }}
         backgroundColor={'#fff'}
-        title={'Home'}
+        title={'장소 추천 목록'}
         titleStyle={{ color: "#000", alignItems: "center", textAlign: "center" }}
         onLeftPress={() => navigation.openDrawer()}
         leftIconContainerStyle={{ marginTop: 22 }}
@@ -95,26 +119,15 @@ export default function MainScreen({ navigation }) {
       />
 
       {showmessage ? (<View style={{ alignContent: "center", height: 50 }} >
-        <Text onPress={() => showmessageFunc()} style={{ textAlign: 'left', alignSelf: 'stretch', }}>좋은 아침이예요!{"\n"}
-          오늘은 {month}월 {date}일 {days[day]}요일 입니다!
-        </Text>
+
       </View>) : (<></>)}
       {/* <Text style={{ textAlign: 'left', alignSelf: 'stretch', }}>일정만들기</Text> */}
-
-      <View>
-        <TouchableOpacity onPress={() => { navigation.navigate('Home'); console.log("이미지눌림") }}>
-          <Image source={{ uri: imageFraudUrl }} style={{ height: 170, width: screenWidth }} />
-        </TouchableOpacity>
-      </View>
-      <View >
-        {/* <Text style={styles.mainScreenHeadline } allowFontScaling={false}>확정이 필요한 일정</Text> */}
-        {/* <Text  >확정이 필요한 일정</Text> */}
-        <TouchableHighlight onPress={()=>navigation.navigate("temp")} >
-          <Image source={require('../../asset/maintitle2.png')} style={{ height: 30, width: screenWidth }} />
-        </TouchableHighlight>
-      </View>
+      <Text>시작 장소: 중앙대학교, 숙명여자대학교{'\n'}</Text>
+      <Text>
+        {
+          location.map((item) => item + '\n\n')}
+      </Text>
     </View>
-
   );
 }
 //resizeMode: 'contain'
