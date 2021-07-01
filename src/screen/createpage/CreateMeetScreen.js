@@ -4,11 +4,22 @@ import * as React from 'react';
 import {useContext} from 'react';
 import {useState} from 'react';
 import AppContext from '../../context/AppContext';
-import {Button, View, Text, Image, Alert, Modal, Pressable} from 'react-native';
+import {
+  Button,
+  View,
+  Text,
+  Image,
+  Alert,
+  Modal,
+  Pressable,
+  StatusBar,
+} from 'react-native';
 import styles from './styles';
 import {Appbar} from 'react-native-paper';
 import {TextInput} from 'react-native-paper';
 import {CalendarList} from 'react-native-common-date-picker';
+import ActionBar from 'react-native-action-bar';
+
 // import {Modal} from 'react-native-modals';
 // npm install react-native-simple-time-picker --save
 // npm install react-native-picker-select
@@ -27,13 +38,17 @@ export default function CreateMeetScreen({navigation}) {
 
   return (
     <View style={styles.container}>
-      <Appbar.Header style={{backgroundColor: 'white'}}>
-        <Appbar.BackAction
-          icon="menu"
-          onPress={() => navigation.navigate('Home')}
-        />
-        <Appbar.Content titleStyle={{textAlign: 'center'}} title={'일정생성'} />
-      </Appbar.Header>
+      <StatusBar StatusBarStyle={'dark-content'} backgroundColor="#FFFFFF" />
+      <ActionBar
+        containerStyle={{height: 60, alignSelf: 'center', paddingRight: 40}}
+        backgroundColor={'#fff'}
+        title={'약속 생성'}
+        titleStyle={{color: '#000', alignItems: 'center', textAlign: 'center'}}
+        // onLeftPress={() => goBack()}
+        leftIconContainerStyle={{marginTop: 22}}
+        leftIconName={'back'}
+        leftIconImageStyle={{tintColor: '#000000'}}
+      />
 
       <View style={styles.contents}>
         <TextInput
