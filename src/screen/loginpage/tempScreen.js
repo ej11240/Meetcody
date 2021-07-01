@@ -5,65 +5,58 @@ import { View, Text, Alert, Image, Dimensions, TouchableOpacity } from 'react-na
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ActionBar from 'react-native-action-bar';
 import axios from 'axios';
-import { set } from 'lodash';
-import styles from '../mainpage/styles';
-import { TouchableHighlight, } from 'react-native-gesture-handler';
+import { Button } from 'react-native-elements';
 
-const postDataUsingSimplePostCall = () => {
-  axios
-    .post('http://localhost:8081/start_input', {
-      input1: "Sookmyung Women's University",
-      input2: "Chung-Ang University"
-    })
-    .then(function (response) {
-      // handle success
 
-      console.log(JSON.stringify(response.data))
-    })
-    .catch(function (error) {
-      // handle error
-      // alert(error.message);
-      console.log(error.message)
-    });
-  // axios.post('/login', { userId : "user.id", userPassword : "user.password" }) .then(function (response) { console.log(response); }) .catch(error => { console.log('error : ',error.response) });
-};
 
-// let stations=null;
 
 export default function tempScreen({ navigation }) {
   const myContext = useContext(AppContext);
   const [stations, setStations] = React.useState(null);
-  const [getapi, setGetapi] =React.useState(false);
-  let count1=0;
-  let count=0;
   
-  React.useEffect(()=>{
-    axios.get('http://localhost:8080/subway',{maxRedirects:0})
+
+  const getStations=()=>{
+    axios.get('http://localhost:8080/subway', { maxRedirects: 0 })
       .then(response => {
-        count1=count1+1;
         setStations(response.data);
-        count=count+1;
-        console.log(count1+"\n");
-        // stations=response.data;
+        console.log("success");
       }) // SUCCESS
       .catch(response => { console.log(response); }); // ERROR
-  },[getapi]);
+  };
+
+  
+  const postDataUsingSimplePostCall = () => {
+    axios
+      .post('http://localhost:8080/input', {
+        input1: "서울특별시 도봉구 시루봉로 58",
+        input2: "서울특별시 용산구 청파로47길 100"
+      }
+      , {
+        headers: {
+            'Content-Type': 'application/json; charset=UTF-8'
+        }
+      }
+      )
+      .then(function (response) {
+  
+        console.log(JSON.stringify(response.data))
+        getStations();
+      })
+      .catch(function (error) {
+  
+        console.log(error)
+      });
+  };
+  
 
   const [showmessage, setShowmessage] = React.useState(true);
-  const showmessageFunc = () => {
-    setShowmessage(!showmessage);
-    console.log("눌림");
-  }
-  postDataUsingSimplePostCall();
-  // getData();
-  console.log(count+"\n");
-
+  
   const station = JSON.stringify(stations);
   const array = station.split("\"");
 
 
   const imageFraudUrl = 'https://s3-meetcody.s3.ap-northeast-2.amazonaws.com/fakecreateimage.png';
-  
+
   const screenWidth = Dimensions.get('window').width;
 
 
@@ -78,17 +71,12 @@ export default function tempScreen({ navigation }) {
   }
 
   console.log(location);
-  console.log(typeof(location[0]));
 
   const today = new Date();
   const date = today.getDate().toLocaleString();
   const month = (today.getMonth() + 1).toLocaleString();
   const day = today.getDay();
   let days = ["일", "월", "화", "수", "목", "금", "토"];
-
-
-  
-
 
   return (
 
@@ -127,7 +115,7 @@ export default function tempScreen({ navigation }) {
         {
           location.map((item) => item + '\n\n')}
       </Text>
+      <Button onPress={()=>postDataUsingSimplePostCall()} title="중간지점에서 가까운 역 표시하기"></Button>
     </View>
   );
 }
-//resizeMode: 'contain'

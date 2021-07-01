@@ -31,7 +31,9 @@ export default StyleSheet.create({
     backgroundColor: 'transparent',
   },
   mainScreenHeadline:{
-    fontSize:14
+    fontSize:18,
+    fontWeight:'bold',
+    paddingLeft:10
   }
 });
 
