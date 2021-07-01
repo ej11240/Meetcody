@@ -70,6 +70,26 @@ export default StyleSheet.create({
     shadowColor: "#fff",
     lineHeight: 20,
     
-  }
+  },
+  mainNeedConfirmMeet:{
+    width:screenWidth-25,
+    height:150
+  },
+  mainNeedConfirmMeetHead:{
+    fontSize:16,
+    marginLeft:20,
+    fontWeight:'bold',
+    alignSelf:'baseline'
+  },
+  mainNeedConfirmMeetOwner:{
+    fontSize:16,
+    textAlign:'right',
+    
+  },
+  mainNeedConfirmMeetText:{
+    marginLeft:20,
+    fontSize:13,
+    marginTop:15,
+  },
 });
 

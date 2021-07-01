@@ -66,7 +66,7 @@ export default function MainScreen({ navigation }) {
           {
             image: require('../../asset/searchicon.png'),
             onPress: () => console.log('Right Phone !'),
-            badge: '1',
+            resizeMode: "contain",
             width: 40,
           },
         ]}
@@ -76,7 +76,7 @@ export default function MainScreen({ navigation }) {
       />
 
       {showmessage1 ? (
-        <View style={{ alignContent: "center", height: 50 }} >
+        <View style={{ alignContent: "center", height: 50, marginTop: 10 }} >
 
           <TouchableOpacity onPress={() => showmessageFunc1()} style={styles.mainMeesageBox}>
             <Text style={{ textAlignVertical: "center", height: 50, fontSize: 13, color: '#fff' }}  >{message1}</Text>
@@ -88,12 +88,12 @@ export default function MainScreen({ navigation }) {
       <View style={styles.mainScreen1ContentView}>
 
         <Text style={styles.mainScreenHeadline} allowFontScaling={false}>일정 만들기</Text>
-        <View style={{flexDirection:'row'}}>
+        <View style={{ flexDirection: 'row', marginTop: 10 }}>
           <TouchableOpacity
             onPress={() => {
               navigation.navigate('CreateMeet');
             }}
-            style={{ width: 50, alignItems:'center', height:50 }}
+            style={{ width: 60, height: '100%', alignContent: 'center', justifyContent: 'center', alignItems: 'center' }}
             activeOpacity={1}
           >
             <Image
@@ -102,19 +102,30 @@ export default function MainScreen({ navigation }) {
             />
           </TouchableOpacity>
 
-          <ScrollView horizontal={true} style={{ flexDirection: 'row' }}>
+          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{ flexDirection: 'row' }}>
             <TouchableOpacity
               activeOpacity={2}
               style={styles.mainCustomMeet}
             >
               <Text style={styles.mainCustomMeetText}>비즈니스{'\n'}1시간{'\n'}online</Text>
-
             </TouchableOpacity>
-            
+            <TouchableOpacity
+              activeOpacity={2}
+              style={styles.mainCustomMeet}
+            >
+              <Text style={styles.mainCustomMeetText}>친구들과{'\n'}2시간{'\n'}offline</Text>
+            </TouchableOpacity>
+
             <TouchableOpacity
               activeOpacity={1}
               style={styles.mainCustomMeet}
-              >
+            >
+              <Text style={styles.mainCustomMeetText}>비즈니스{'\n'}1시간{'\n'}online</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              activeOpacity={2}
+              style={styles.mainCustomMeet}
+            >
               <Text style={styles.mainCustomMeetText}>비즈니스{'\n'}1시간{'\n'}online</Text>
             </TouchableOpacity>
           </ScrollView>
@@ -123,6 +134,27 @@ export default function MainScreen({ navigation }) {
 
       <View style={styles.mainScreen1ContentView}>
         <Text style={styles.mainScreenHeadline} allowFontScaling={false}>확정이 필요한 일정</Text>
+        <ScrollView style={{ marginTop: 10 }}>
+          <TouchableOpacity
+            activeOpacity={1}
+            style={styles.mainNeedConfirmMeet}
+          >
+            <View style={{ flexDirection: 'row', width:screenWidth-50 }}>
+            {/* <View><Text style={styles.mainNeedConfirmMeetHead}>졸업 프로젝트</Text></View>
+              <View style={{}}><Text style={styles.mainNeedConfirmMeetOwner}>{'\<'}방장{'\>'}</Text></View> */}
+              <Text style={styles.mainNeedConfirmMeetHead}>졸업 프로젝트</Text>
+              <Text style={styles.mainNeedConfirmMeetOwner}>{'\<'}방장{'\>'}</Text>
+            </View>
+
+            <Text style={styles.mainNeedConfirmMeetText}>
+              Business · Online {'\n'}
+              2hours{'\n'}
+              현재 수락 인원/전체 인원: 4명/5명{'\n'}
+              Recommended Date: {'\n'}
+              (4/6 12:30 PM) (4/7 1:50 PM) ...
+            </Text>
+          </TouchableOpacity>
+        </ScrollView>
       </View>
 
     </SafeAreaView>
