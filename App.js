@@ -1,15 +1,16 @@
 import 'react-native-gesture-handler';
-import React, { useState } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import React, {useState} from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 import AppContext from './src/context/AppContext';
-import MainSideMenu from "./src/screen/mainpage/MainSideMenu";
+import MainSideMenu from './src/screen/mainpage/MainSideMenu';
 import SignInScreen from './src/screen/loginpage/SignInScreen';
 import SplashScreen from './src/screen/SplashScreen';
 import SignUpScreen from './src/screen/loginpage/SignUpScreen';
 import ResetPasswordScreen from './src/screen/loginpage/ResetPasswordScreen';
 import AxiosTestScreen from './src/screen/loginpage/AxiosTestScreen';
 import tempScreen from './src/screen/loginpage/tempScreen';
+import CreateMeetScreen from './src/screen/createpage/CreateMeetScreen';
 
 export default function App() {
   const [isLoading, setIsLoading] = useState();
@@ -39,7 +40,11 @@ export default function App() {
             // 조건부 스크린 사용하기
             ...(isLoggedIn ? userScreens : authScreens),
           }).map(([name, component]) => (
-            <RootStack.Screen name={name} component={component} options={{ headerShown: false }} />
+            <RootStack.Screen
+              name={name}
+              component={component}
+              options={{headerShown: false}}
+            />
           ))}
         </RootStack.Navigator>
       </NavigationContainer>
@@ -47,11 +52,7 @@ export default function App() {
   );
 }
 
-
-const commonScreens = {
-
-};
-
+const commonScreens = {};
 
 const authScreens = {
   SignUp: SignUpScreen,
@@ -62,7 +63,8 @@ const authScreens = {
 };
 
 const userScreens = {
-  MainSideMenu: MainSideMenu
+  MainSideMenu: MainSideMenu,
+  CreateMeet: CreateMeetScreen,
 };
 
 const RootStack = createStackNavigator();
