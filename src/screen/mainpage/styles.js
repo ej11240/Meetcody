@@ -32,26 +32,43 @@ export default StyleSheet.create({
     ...absoluteStretch,
     backgroundColor: 'transparent',
   },
-  mainScreenHeadline:{
-    fontSize:18,
-    fontWeight:'bold',
-    
-  },
-  mainScreen1ContentView:{
-    height:150, 
-    width:screenWidth-20,
+  mainScreenHeadline: {
+    fontSize: 18,
+    fontWeight: 'bold',
 
   },
-  mainMeesageBox:{
-    textAlign: "left", 
-    justifyContent: "flex-start", 
-    width: screenWidth - 20, 
-    backgroundColor: '#C4C4C4', 
-    height: 50, 
+  mainScreen1ContentView: {
+    height: 150,
+    width: screenWidth - 20,
+    marginTop: 20
+  },
+  mainMeesageBox: {
+    textAlign: "left",
+    justifyContent: "flex-start",
+    width: screenWidth - 20,
+    backgroundColor: '#C4C4C4',
+    height: 50,
     alignContent: "center",
-    borderRadius:7,
-    paddingTop:10,
-    paddingLeft:10,
+    borderRadius: 7,
+    paddingTop: 10,
+    paddingLeft: 10,
+
+  },
+  mainCustomMeet: {
+    borderColor: '#000',
+    borderWidth: 1,
+    borderRadius: 5,
+    width: 80,
+    height: 95,
+    marginLeft: 15,
+    alignItems: 'center',
+    alignContent: 'center',
+    justifyContent: 'center',
+    
+  },
+  mainCustomMeetText: {
+    shadowColor: "#fff",
+    lineHeight: 20,
     
   }
 });
