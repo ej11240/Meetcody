@@ -21,12 +21,12 @@ export default function CreateMeetScreen({navigation}) {
   return (
     <View style={styles.container}>
       <ActionBar
-        containerStyle={{height: 60, alignSelf: 'center', paddingRight: 40}}
+        containerStyle={{height: 50, alignSelf: 'center', paddingRight: 40}}
         backgroundColor={'#fff'}
         title={'약속 생성'}
-        titleStyle={{color: '#000', textAlign: 'center', paddingBottom: 10}}
-        //onLeftPress={() => goBack()}
-        leftIconContainerStyle={{marginTop: 22}}
+        titleStyle={{color: '#000', textAlign: 'center'}}
+        onLeftPress={() => navigation.navigate('MainScreen')}
+        leftIconContainerStyle={{marginTop: 20}}
         leftIconName={'back'}
         leftIconImageStyle={{tintColor: '#000000'}}
       />
