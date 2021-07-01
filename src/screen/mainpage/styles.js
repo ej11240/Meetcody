@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 
 const absoluteStretch = {
   position: 'absolute',
@@ -30,10 +30,14 @@ export default StyleSheet.create({
     ...absoluteStretch,
     backgroundColor: 'transparent',
   },
-  mainScreenHeadline:{
-    fontSize:18,
-    fontWeight:'bold',
-    paddingLeft:10
-  }
-});
+  mainScreenHeadline: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    paddingLeft: 10,
+  },
 
+  droidSafeArea: {
+    flex: 1,
+    paddingTop: Platform.OS === 'android' ? 25 : 0,
+  },
+});
