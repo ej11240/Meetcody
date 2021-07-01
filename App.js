@@ -11,6 +11,7 @@ import ResetPasswordScreen from './src/screen/loginpage/ResetPasswordScreen';
 import AxiosTestScreen from './src/screen/loginpage/AxiosTestScreen';
 import tempScreen from './src/screen/loginpage/tempScreen';
 import CreateMeetScreen from './src/screen/createpage/CreateMeetScreen';
+import MainScreen from './src/screen/mainpage/MainScreen';
 
 export default function App() {
   const [isLoading, setIsLoading] = useState();
@@ -65,6 +66,7 @@ const authScreens = {
 const userScreens = {
   MainSideMenu: MainSideMenu,
   CreateMeet: CreateMeetScreen,
+  MainScreen: MainScreen,
 };
 
 const RootStack = createStackNavigator();
