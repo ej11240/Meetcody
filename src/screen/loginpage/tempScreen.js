@@ -29,7 +29,7 @@ export default function tempScreen({ navigation }) {
     axios
       .post('http://localhost:8080/input', {
         input1: "서울특별시 도봉구 시루봉로 58",
-        input2: "서울특별시 용산구 청파로47길 100"
+        input2: "서울특별시 도봉구 시루봉로 58"
       }
       , {
         headers: {

@@ -92,30 +92,40 @@ export default function MainScreen({ navigation }) {
 
         </View>) : (<></>)}
 
-      <View>
+      <View style={styles.mainScreen1ContentView}>
 
-        <TouchableOpacity 
-        onPress={() => {
+        <TouchableOpacity
+          onPress={() => {
             navigation.navigate('CreateMeet');
             console.log('이미지눌림');
-          }}>
+          }}
+          style={{ width: screenWidth }}>
           <Text style={styles.mainScreenHeadline} allowFontScaling={false}>일정 만들기</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('CreateMeet');
+            console.log('이미지눌림');
+          }}
+        >
           <Image
-            source={{ uri: imageFraudUrl }}
-            style={{ height: 170, width: screenWidth }}
+            source={require('../../asset/plusicon.png')}
+            style={{ height: 60, width: 60, resizeMode: "contain",  }}
           />
         </TouchableOpacity>
       </View>
-      <View>
-        <Text style={styles.mainScreenHeadline} allowFontScaling={false}>확정이 필요한 일정</Text>
-        {/* <Text  >확정이 필요한 일정</Text> */}
-        <TouchableHighlight onPress={() => navigation.navigate("temp")} >
-          <Image source={require('../../asset/maintitle2.png')} style={{ height: 30, width: screenWidth }} />
-        </TouchableHighlight>
+
+      <View style={styles.mainScreen1ContentView}>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('CreateMeet');
+            console.log('이미지눌림');
+          }}
+          style={{ width: screenWidth }}>
+          <Text style={styles.mainScreenHeadline} allowFontScaling={false}>확정이 필요한 일정</Text>
+        </TouchableOpacity>
       </View>
+      
     </View>
   );
 }
-//resizeMode: 'contain'

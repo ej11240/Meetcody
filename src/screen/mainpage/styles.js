@@ -1,6 +1,8 @@
 // @flow
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+
+const screenWidth = Dimensions.get('window').width;
 
 const absoluteStretch = {
   position: 'absolute',
@@ -33,7 +35,11 @@ export default StyleSheet.create({
   mainScreenHeadline:{
     fontSize:18,
     fontWeight:'bold',
-    paddingLeft:10
+    
+  },
+  mainScreen1ContentView:{
+    height:150, 
+    width:screenWidth-20
   }
 });
 
