@@ -52,12 +52,12 @@ export default function MainScreen({ navigation }) {
   const message1 = "좋은 아침이예요!\n오늘은 " + month + "월 " + date + "일 " + days[day] + "요일 입니다!";
 
   return (
-    <SafeAreaView style={{ flex: 1, alignItems: 'center',  }}>
+    <SafeAreaView style={{ flex: 1, alignItems: 'center', }}>
       <ActionBar
         containerStyle={{ height: 50, alignSelf: 'center', alignContent: "center", }}
         backgroundColor={'#fff'}
         title={'Home'}
-        titleStyle={{ color: "#000", textAlign: "center", paddingBottom:10}}
+        titleStyle={{ color: "#000", textAlign: "center", paddingBottom: 10 }}
         onLeftPress={() => navigation.openDrawer()}
         leftIconContainerStyle={{ marginTop: 22 }}
         rightIconContainerStyle={{ marginTop: 22 }}
@@ -79,41 +79,52 @@ export default function MainScreen({ navigation }) {
         <View style={{ alignContent: "center", height: 50 }} >
 
           <TouchableOpacity onPress={() => showmessageFunc1()} style={styles.mainMeesageBox}>
-            <Text style={{ textAlignVertical: "center", height: 50, fontSize:13, color:'#fff' }}  >{message1}</Text>
+            <Text style={{ textAlignVertical: "center", height: 50, fontSize: 13, color: '#fff' }}  >{message1}</Text>
           </TouchableOpacity>
 
         </View>) : (<></>)}
 
-      {showmessage2 ? (
-        <View style={{ alignContent: "center", height: 50, top:10 }} >
-
-          <TouchableOpacity onPress={() => showmessageFunc2()} style={styles.mainMeesageBox}>
-            <Text style={{ textAlignVertical: "center", height: 50, fontSize:13, color:'#fff', textDecorationLine: "underline", paddingTop:5 }}  >이곳을 눌러서 밋코디 앱을 설치해보세요!</Text>
-          </TouchableOpacity>
-
-        </View>) : (<></>)}
 
       <View style={styles.mainScreen1ContentView}>
 
         <Text style={styles.mainScreenHeadline} allowFontScaling={false}>일정 만들기</Text>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('CreateMeet');
-            console.log('이미지눌림');
-          }}
-          
-        >
-          <Image
-            source={require('../../asset/plusicon.png')}
-            style={{ height: 60, width: 60, resizeMode: "contain",  }}
-          />
-        </TouchableOpacity>
+        <View style={{flexDirection:'row'}}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('CreateMeet');
+            }}
+            style={{ width: 50, alignItems:'center', height:50 }}
+            activeOpacity={1}
+          >
+            <Image
+              source={require('../../asset/plusicon.png')}
+              style={{ height: 60, width: 60, resizeMode: "contain", }}
+            />
+          </TouchableOpacity>
+
+          <ScrollView horizontal={true} style={{ flexDirection: 'row' }}>
+            <TouchableOpacity
+              activeOpacity={2}
+              style={styles.mainCustomMeet}
+            >
+              <Text style={styles.mainCustomMeetText}>비즈니스{'\n'}1시간{'\n'}online</Text>
+
+            </TouchableOpacity>
+            
+            <TouchableOpacity
+              activeOpacity={1}
+              style={styles.mainCustomMeet}
+              >
+              <Text style={styles.mainCustomMeetText}>비즈니스{'\n'}1시간{'\n'}online</Text>
+            </TouchableOpacity>
+          </ScrollView>
+        </View>
       </View>
 
       <View style={styles.mainScreen1ContentView}>
-          <Text style={styles.mainScreenHeadline} allowFontScaling={false}>확정이 필요한 일정</Text>
+        <Text style={styles.mainScreenHeadline} allowFontScaling={false}>확정이 필요한 일정</Text>
       </View>
-      
+
     </SafeAreaView>
   );
 }
