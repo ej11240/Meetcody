@@ -39,7 +39,20 @@ export default StyleSheet.create({
   },
   mainScreen1ContentView:{
     height:150, 
-    width:screenWidth-20
+    width:screenWidth-20,
+
+  },
+  mainMeesageBox:{
+    textAlign: "left", 
+    justifyContent: "flex-start", 
+    width: screenWidth - 20, 
+    backgroundColor: '#C4C4C4', 
+    height: 50, 
+    alignContent: "center",
+    borderRadius:7,
+    paddingTop:10,
+    paddingLeft:10,
+    
   }
 });
 

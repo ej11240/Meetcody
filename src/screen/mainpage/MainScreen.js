@@ -10,8 +10,9 @@ import {
   Image,
   Dimensions,
   TouchableOpacity,
+  ScrollView,
+  SafeAreaView
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import ActionBar from 'react-native-action-bar';
 import axios from 'axios';
 import { set } from 'lodash';
@@ -51,12 +52,12 @@ export default function MainScreen({ navigation }) {
   const message1 = "좋은 아침이예요!\n오늘은 " + month + "월 " + date + "일 " + days[day] + "요일 입니다!";
 
   return (
-    <View style={{ flex: 1, alignItems: 'center' }}>
+    <SafeAreaView style={{ flex: 1, alignItems: 'center',  }}>
       <ActionBar
-        containerStyle={{ height: 100, alignSelf: 'center', alignContent: "center", }}
+        containerStyle={{ height: 50, alignSelf: 'center', alignContent: "center", }}
         backgroundColor={'#fff'}
         title={'Home'}
-        titleStyle={{ color: "#000", textAlign: "center", textAlignVertical: "bottom" }}
+        titleStyle={{ color: "#000", textAlign: "center", paddingBottom:10}}
         onLeftPress={() => navigation.openDrawer()}
         leftIconContainerStyle={{ marginTop: 22 }}
         rightIconContainerStyle={{ marginTop: 22 }}
@@ -77,36 +78,30 @@ export default function MainScreen({ navigation }) {
       {showmessage1 ? (
         <View style={{ alignContent: "center", height: 50 }} >
 
-          <TouchableOpacity onPress={() => showmessageFunc1()} style={{ textAlign: "left", justifyContent: "flex-start", width: screenWidth - 20, backgroundColor: "C4C4C4", height: 50, alignContent: "center" }}>
-            <Text style={{ textAlignVertical: "center", height: 50 }}  >{message1}</Text>
+          <TouchableOpacity onPress={() => showmessageFunc1()} style={styles.mainMeesageBox}>
+            <Text style={{ textAlignVertical: "center", height: 50, fontSize:13, color:'#fff' }}  >{message1}</Text>
           </TouchableOpacity>
 
         </View>) : (<></>)}
 
       {showmessage2 ? (
-        <View style={{ alignContent: "center", height: 50 }} >
+        <View style={{ alignContent: "center", height: 50, top:10 }} >
 
-          <TouchableOpacity onPress={() => showmessageFunc2()} style={{ textAlign: "left", justifyContent: "flex-start", width: screenWidth - 20, backgroundColor: "C4C4C4", height: 50, alignContent: "center" }}>
-            <Text style={{ textAlignVertical: "center", height: 50, textDecorationLine: "underline" }}  >이곳을 눌러서 밋코디 앱을 설치해보세요!</Text>
+          <TouchableOpacity onPress={() => showmessageFunc2()} style={styles.mainMeesageBox}>
+            <Text style={{ textAlignVertical: "center", height: 50, fontSize:13, color:'#fff', textDecorationLine: "underline", paddingTop:5 }}  >이곳을 눌러서 밋코디 앱을 설치해보세요!</Text>
           </TouchableOpacity>
 
         </View>) : (<></>)}
 
       <View style={styles.mainScreen1ContentView}>
 
+        <Text style={styles.mainScreenHeadline} allowFontScaling={false}>일정 만들기</Text>
         <TouchableOpacity
           onPress={() => {
             navigation.navigate('CreateMeet');
             console.log('이미지눌림');
           }}
-          style={{ width: screenWidth }}>
-          <Text style={styles.mainScreenHeadline} allowFontScaling={false}>일정 만들기</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('CreateMeet');
-            console.log('이미지눌림');
-          }}
+          
         >
           <Image
             source={require('../../asset/plusicon.png')}
@@ -116,16 +111,9 @@ export default function MainScreen({ navigation }) {
       </View>
 
       <View style={styles.mainScreen1ContentView}>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('CreateMeet');
-            console.log('이미지눌림');
-          }}
-          style={{ width: screenWidth }}>
           <Text style={styles.mainScreenHeadline} allowFontScaling={false}>확정이 필요한 일정</Text>
-        </TouchableOpacity>
       </View>
       
-    </View>
+    </SafeAreaView>
   );
 }
