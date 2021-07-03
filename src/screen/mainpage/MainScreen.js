@@ -100,11 +100,12 @@ export default function MainScreen({ navigation }) {
       <View style={{position:"absolute", bottom:0, height:70, flexDirection:"row", width:"100%", alignContent:"center"}}>
         <TouchableOpacity activeOpacity={1} onPress={()=>setCurrentTab(1)} style={{width:"50%", alignItems:"center",}}>
           <View style={{height:"100%"}}>
-          <Image source={require('../../asset/meetcody_logo.png')} style={{width:50, resizeMode:"contain", height:50}} />
+          <Image source={require('../../asset/meetcody_logo.png')} style={{width:50, resizeMode:"contain", height:30}} />
+          <Text>일정 생성</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity activeOpacity={1} onPress={()=>setCurrentTab(2)} style={{width:"50%", alignItems:"center",}}>
-          
+          <Text>일정조회</Text>
         </TouchableOpacity>
       
       </View>
