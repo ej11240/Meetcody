@@ -1,25 +1,25 @@
 import React, { useContext, useEffect, useState } from 'react';
 import {
     View,
+    TouchableOpacity,
     Button,
-    StyleSheet,
 } from 'react-native';
 import AppContext from '../../../context/AppContext';
 import {
     GoogleSignin,
     statusCodes,
 } from '@react-native-google-signin/google-signin';
-
+import styles from './google-login-styles';
 
 const GoogleLoginButton = () => {
     const myContext = useContext(AppContext);
     return (
-        <View style={{ flex: 3, backgroundColor: 'pink' }}>
-            <Button
+            <TouchableOpacity
+                style={styles.buttonContainer}
                 onPress={() => signIn()}
-                title="구글 아이디로 로그인"
-            />
-        </View>
+            >
+                <Button style={styles.button} title="구글 계정으로 로그인"/>
+            </TouchableOpacity>
     )
 }
 
@@ -58,8 +58,6 @@ const signIn = async () => {
         }
     }
 };
-
-
 
 
 export default GoogleLoginButton;

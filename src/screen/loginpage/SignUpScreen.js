@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import {
   Button,
-  StyleSheet,
   TextInput,
   TouchableOpacity,
   SafeAreaView,
@@ -15,6 +14,8 @@ import GoogleLoginButton from './google-login/GoogleLoginButton';
 import GOOGLE_CONFIG from './google-login/google-config';
 import MeetCodyLogoImage from './google-login/MeetCodyLogoImage';
 import GreetingText from './google-login/GreetingText';
+import styles from './google-login/google-login-styles';
+
 
 function SignUpScreen({ navigation }) {
   const myContext = useContext(AppContext);
@@ -49,13 +50,5 @@ function SignUpScreen({ navigation }) {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingLeft: 30,
-    justifyContent: 'center',
-  },
-});
 
 export default SignUpScreen;
