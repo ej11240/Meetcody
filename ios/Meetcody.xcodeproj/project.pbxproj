@@ -145,7 +145,6 @@
 				57440F3FA97A1A8574F44638 /* Pods-Meetcody-MeetcodyTests.debug.xcconfig */,
 				9865E6C720CBAA126A8316B0 /* Pods-Meetcody-MeetcodyTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
