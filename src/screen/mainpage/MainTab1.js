@@ -20,6 +20,8 @@ import { DrawerActions } from '@react-navigation/native';
 
 export default function MainTab1(props) {
   const navigation=()=>props.navigation.navigate('CreateMeet');
+  
+  
   return (
     <>
       <View style={styles.mainScreen1ContentView}>
@@ -74,11 +76,12 @@ export default function MainTab1(props) {
         </View>
       </View>
 
-      <View>
+      <View style={{flex:1}}>
         <Text style={styles.mainScreenHeadline} allowFontScaling={false}>
           확정이 필요한 일정
         </Text>
-        <ScrollView style={{ marginTop: 10 }}>
+        <View style={{height:props.confirmheight-18}}>
+        <ScrollView showsVerticalScrollIndicator={false}>
           <TouchableOpacity
             activeOpacity={1}
             style={styles.mainNeedConfirmMeetTouch}>
@@ -104,6 +107,105 @@ export default function MainTab1(props) {
             </Text>
           </TouchableOpacity>
 
+          <TouchableOpacity
+            activeOpacity={1}
+            style={styles.mainNeedConfirmMeetTouch}>
+            <View style={{ flexDirection: 'row', height: 18, width: '100%' }}>
+              <View>
+                <Text style={[styles.mainNeedConfirmMeetHead]}>
+                  졸업 프로젝트................
+                </Text>
+              </View>
+              <View>
+                <Text style={styles.mainNeedConfirmMeetOwner}>
+                  {'<'}방장{'>'}
+                </Text>
+              </View>
+            </View>
+
+            <Text style={styles.mainNeedConfirmMeetText}>
+              Business · Online {'\n'}
+              2hours{'\n'}
+              현재 수락 인원/전체 인원: 4명/5명{'\n'}
+              Recommended Date: {'\n'}
+              (4/6 12:30 PM) (4/7 1:50 PM) ...
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            activeOpacity={1}
+            style={styles.mainNeedConfirmMeetTouch}>
+            <View style={{ flexDirection: 'row', height: 18, width: '100%' }}>
+              <View>
+                <Text style={[styles.mainNeedConfirmMeetHead]}>
+                  졸업 프로젝트................
+                </Text>
+              </View>
+              <View>
+                <Text style={styles.mainNeedConfirmMeetOwner}>
+                  {'<'}방장{'>'}
+                </Text>
+              </View>
+            </View>
+
+            <Text style={styles.mainNeedConfirmMeetText}>
+              Business · Online {'\n'}
+              2hours{'\n'}
+              현재 수락 인원/전체 인원: 4명/5명{'\n'}
+              Recommended Date: {'\n'}
+              (4/6 12:30 PM) (4/7 1:50 PM) ...
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            activeOpacity={1}
+            style={styles.mainNeedConfirmMeetTouch}>
+            <View style={{ flexDirection: 'row', height: 18, width: '100%' }}>
+              <View>
+                <Text style={[styles.mainNeedConfirmMeetHead]}>
+                  졸업 프로젝트................
+                </Text>
+              </View>
+              <View>
+                <Text style={styles.mainNeedConfirmMeetOwner}>
+                  {'<'}방장{'>'}
+                </Text>
+              </View>
+            </View>
+
+            <Text style={styles.mainNeedConfirmMeetText}>
+              Business · Online {'\n'}
+              2hours{'\n'}
+              현재 수락 인원/전체 인원: 4명/5명{'\n'}
+              Recommended Date: {'\n'}
+              (4/6 12:30 PM) (4/7 1:50 PM) ...
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            activeOpacity={1}
+            style={styles.mainNeedConfirmMeetTouch}>
+            <View style={{ flexDirection: 'row', height: 18, width: '100%' }}>
+              <View>
+                <Text style={[styles.mainNeedConfirmMeetHead]}>
+                  졸업 프로젝트................
+                </Text>
+              </View>
+              <View>
+                <Text style={styles.mainNeedConfirmMeetOwner}>
+                  {'<'}방장{'>'}
+                </Text>
+              </View>
+            </View>
+
+            <Text style={styles.mainNeedConfirmMeetText}>
+              Business · Online {'\n'}
+              2hours{'\n'}
+              현재 수락 인원/전체 인원: 4명/5명{'\n'}
+              Recommended Date: {'\n'}
+              (4/6 12:30 PM) (4/7 1:50 PM) ...
+            </Text>
+          </TouchableOpacity>
           <TouchableOpacity
             activeOpacity={1}
             style={styles.mainNeedConfirmMeetTouch}>
@@ -129,6 +231,7 @@ export default function MainTab1(props) {
             </Text>
           </TouchableOpacity>
         </ScrollView>
+        </View>
       </View>
     </>
   )

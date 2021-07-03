@@ -1,8 +1,10 @@
 // @flow
 import * as React from 'react';
-import {StyleSheet, Dimensions, StatusBar} from 'react-native';
+import { StyleSheet, Dimensions, StatusBar } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const screenWidth = Dimensions.get('window').width;
+
 
 const absoluteStretch = {
   position: 'absolute',
@@ -13,6 +15,7 @@ const absoluteStretch = {
 };
 
 export default StyleSheet.create({
+
   mainSafeViewArea: {
     flex: 1,
     alignItems: 'center',
@@ -57,6 +60,11 @@ export default StyleSheet.create({
     paddingTop: 10,
     paddingLeft: 10,
   },
+  mainMessageText: {
+    textAlignVertical: 'center',
+    fontSize: 13,
+    color: '#fff',
+  },
   mainCustomMeet: {
     borderColor: '#000',
     borderWidth: 1,
@@ -100,5 +108,28 @@ export default StyleSheet.create({
     marginLeft: 20,
     fontSize: 13,
     marginTop: 15,
+  },
+  mainTabView: {
+    position: "absolute",
+    bottom: 0,
+    height: 70,
+    flexDirection: "row",
+    width: "100%",
+    alignContent: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.37,
+    shadowRadius: 7.49,
+
+    elevation: 12,
+    backgroundColor: "#fff"
+  },
+  mainTabTwoView:{
+    height: 45, 
+    alignSelf:'center',
+    marginRight:20,
   },
 });

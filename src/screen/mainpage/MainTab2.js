@@ -21,6 +21,9 @@ import { DrawerActions } from '@react-navigation/native';
 export default function MainTab1(props) {
     return(
     <>
+    <View>
+      
+    </View>
     </>
     )
 }
