@@ -15,10 +15,7 @@ import {
 } from 'react-native';
 import ActionBar from 'react-native-action-bar';
 import axios from 'axios';
-import { set } from 'lodash';
 import styles from './styles';
-import { TouchableHighlight, } from 'react-native-gesture-handler';
-import { Button } from 'react-native-elements';
 
 
 export default function MainScreen({ navigation }) {
@@ -52,7 +49,7 @@ export default function MainScreen({ navigation }) {
   const message1 = "좋은 아침이예요!\n오늘은 " + month + "월 " + date + "일 " + days[day] + "요일 입니다!";
 
   return (
-    <SafeAreaView style={{ flex: 1, alignItems: 'center', }}>
+    <SafeAreaView style={styles.mainSafeViewArea}>
       <ActionBar
         containerStyle={{ height: 50, alignSelf: 'center', alignContent: "center", }}
         backgroundColor={'#fff'}
@@ -67,7 +64,7 @@ export default function MainScreen({ navigation }) {
             image: require('../../asset/searchicon.png'),
             onPress: () => console.log('Right Phone !'),
             resizeMode: "contain",
-            width: 40,
+            width: 5,
           },
         ]}
         rightIconImageStyle={{ tintColor: '#000000', width: 10 }}
@@ -132,18 +129,34 @@ export default function MainScreen({ navigation }) {
         </View>
       </View>
 
-      <View style={styles.mainScreen1ContentView}>
+      <View>
         <Text style={styles.mainScreenHeadline} allowFontScaling={false}>확정이 필요한 일정</Text>
-        <ScrollView style={{ marginTop: 10 }}>
+        <ScrollView style={{ marginTop: 10, }}>
           <TouchableOpacity
             activeOpacity={1}
-            style={styles.mainNeedConfirmMeet}
+            style={styles.mainNeedConfirmMeetTouch}
           >
-            <View style={{ flexDirection: 'row', width:screenWidth-50 }}>
-            {/* <View><Text style={styles.mainNeedConfirmMeetHead}>졸업 프로젝트</Text></View>
-              <View style={{}}><Text style={styles.mainNeedConfirmMeetOwner}>{'\<'}방장{'\>'}</Text></View> */}
-              <Text style={styles.mainNeedConfirmMeetHead}>졸업 프로젝트</Text>
-              <Text style={styles.mainNeedConfirmMeetOwner}>{'\<'}방장{'\>'}</Text>
+            <View style={{ flexDirection: 'row', height:18,width:"100%"}}>
+              <View><Text style={[styles.mainNeedConfirmMeetHead]}>졸업 프로젝트................</Text></View>
+              <View><Text style={styles.mainNeedConfirmMeetOwner}>{'\<'}방장{'\>'}</Text></View>
+            </View>
+
+            <Text style={styles.mainNeedConfirmMeetText}>
+              Business · Online {'\n'}
+              2hours{'\n'}
+              현재 수락 인원/전체 인원: 4명/5명{'\n'}
+              Recommended Date: {'\n'}
+              (4/6 12:30 PM) (4/7 1:50 PM) ...
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            activeOpacity={1}
+            style={styles.mainNeedConfirmMeetTouch}
+          >
+            <View style={{ flexDirection: 'row', height:18,width:"100%"}}>
+              <View><Text style={[styles.mainNeedConfirmMeetHead]}>졸업 프로젝트................</Text></View>
+              <View><Text style={styles.mainNeedConfirmMeetOwner}>{'\<'}방장{'\>'}</Text></View>
             </View>
 
             <Text style={styles.mainNeedConfirmMeetText}>
@@ -155,6 +168,7 @@ export default function MainScreen({ navigation }) {
             </Text>
           </TouchableOpacity>
         </ScrollView>
+      
       </View>
 
     </SafeAreaView>
