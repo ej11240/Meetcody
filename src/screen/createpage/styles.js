@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, StatusBar} from 'react-native';
 
 export default StyleSheet.create({
   container: {
@@ -57,5 +57,25 @@ export default StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: 'center',
+  },
+
+  button: {
+    alignItems: 'center',
+    backgroundColor: '#DDDDDD',
+    padding: 10,
+    width: '49%',
+  },
+
+  fixToText: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginLeft: 20,
+    marginRight: 20,
+    marginBottom: 10,
+  },
+
+  mainSafeViewArea: {
+    flex: 1,
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
   },
 });
