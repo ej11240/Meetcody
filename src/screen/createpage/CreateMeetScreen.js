@@ -17,6 +17,7 @@ import {
 import styles from './styles';
 import {TextInput} from 'react-native-paper';
 import ActionBar from 'react-native-action-bar';
+import MultiSelect from 'react-native-multiple-select';
 //import {CalendarList} from 'react-native-common-date-picker';
 // import {Modal} from 'react-native-modals';
 // npm install react-native-simple-time-picker --save
@@ -59,6 +60,31 @@ export default function CreateMeetScreen({navigation}) {
         <Text>회의 지속 시간</Text>
 
         <Text>선호 시간대(중복 선택 가능)</Text>
+        {/* <MultiSelect
+          hideTags
+          items={items}
+          uniqueKey="id"
+          ref={component => {
+            this.multiSelect = component;
+          }}
+          onSelectedItemsChange={this.onSelectedItemsChange}
+          selectedItems={selectedItems}
+          selectText="Pick Items"
+          searchInputPlaceholderText="Search Items..."
+          onChangeInput={text => console.log(text)}
+          altFontFamily="ProximaNova-Light"
+          tagRemoveIconColor="#CCC"
+          tagBorderColor="#CCC"
+          tagTextColor="#CCC"
+          selectedItemTextColor="#CCC"
+          selectedItemIconColor="#CCC"
+          itemTextColor="#000"
+          displayKey="name"
+          searchInputStyle={{color: '#CCC'}}
+          submitButtonColor="#CCC"
+          submitButtonText="Submit"
+        />
+        <View>{this.multiSelect.getSelectedItemsExt(selectedItems)}</View> */}
 
         <Text>장소 선택</Text>
 

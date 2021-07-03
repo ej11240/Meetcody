@@ -17,7 +17,7 @@ import {
 import ActionBar from 'react-native-action-bar';
 import axios from 'axios';
 import styles from './styles';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 export default function MainScreen({navigation}) {
   const myContext = useContext(AppContext);
@@ -97,7 +97,6 @@ export default function MainScreen({navigation}) {
             <Text
               style={{
                 textAlignVertical: 'center',
-                height: 50,
                 fontSize: 13,
                 color: '#fff',
               }}>
