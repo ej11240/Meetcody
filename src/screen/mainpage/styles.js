@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import { StyleSheet, Dimensions } from 'react-native';
+import {StyleSheet, Dimensions, StatusBar} from 'react-native';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -13,10 +13,10 @@ const absoluteStretch = {
 };
 
 export default StyleSheet.create({
-  mainSafeViewArea:{
-    flex: 1, 
-    alignItems: 'center', 
-    paddingTop: Platform.OS === 'android' ? 25 : 0, 
+  mainSafeViewArea: {
+    flex: 1,
+    alignItems: 'center',
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
   },
   container: {
     flex: 1,
@@ -40,24 +40,22 @@ export default StyleSheet.create({
   mainScreenHeadline: {
     fontSize: 18,
     fontWeight: 'bold',
-
   },
   mainScreen1ContentView: {
     height: 150,
     width: screenWidth - 20,
-    marginTop: 20
+    marginTop: 20,
   },
   mainMeesageBox: {
-    textAlign: "left",
-    justifyContent: "flex-start",
+    textAlign: 'left',
+    justifyContent: 'flex-start',
     width: screenWidth - 20,
     backgroundColor: '#C4C4C4',
     height: 50,
-    alignContent: "center",
+    alignContent: 'center',
     borderRadius: 7,
     paddingTop: 10,
     paddingLeft: 10,
-
   },
   mainCustomMeet: {
     borderColor: '#000',
@@ -69,42 +67,38 @@ export default StyleSheet.create({
     alignItems: 'center',
     alignContent: 'center',
     justifyContent: 'center',
-    
   },
   mainCustomMeetText: {
-    shadowColor: "#fff",
+    shadowColor: '#fff',
     lineHeight: 20,
-    
   },
-  mainNeedConfirmMeetTouch:{
-    width:screenWidth-25,
-    height:140,
+  mainNeedConfirmMeetTouch: {
+    width: screenWidth - 25,
+    height: 140,
     borderColor: '#000',
     borderWidth: 1,
     borderRadius: 5,
-    paddingTop:10,
-    marginTop:10,
+    paddingTop: 10,
+    marginTop: 10,
   },
-  mainNeedConfirmMeetHead:{
-    fontSize:16,
-    marginLeft:20,
-    fontWeight:'bold',
+  mainNeedConfirmMeetHead: {
+    fontSize: 16,
+    marginLeft: 20,
+    fontWeight: 'bold',
     // alignSelf:'baseline',
     // flex:1,
-    width:(screenWidth-45)*0.8
+    width: (screenWidth - 45) * 0.8,
   },
-  mainNeedConfirmMeetOwner:{
-    fontSize:16,
-    textAlign:'center',
+  mainNeedConfirmMeetOwner: {
+    fontSize: 16,
+    textAlign: 'center',
     // alignSelf:'flex-end',
     // flex:2,
-    width:(screenWidth-45)*0.2,
-
+    width: (screenWidth - 45) * 0.2,
   },
-  mainNeedConfirmMeetText:{
-    marginLeft:20,
-    fontSize:13,
-    marginTop:15,
+  mainNeedConfirmMeetText: {
+    marginLeft: 20,
+    fontSize: 13,
+    marginTop: 15,
   },
 });
-
