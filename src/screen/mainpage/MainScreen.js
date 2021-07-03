@@ -3,6 +3,8 @@
 import * as React from 'react';
 import { useContext } from 'react';
 import AppContext from '../../context/AppContext';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { getStatusBarHeight } from 'react-native-status-bar-height';
 // import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {
@@ -25,23 +27,28 @@ export default function MainScreen({ navigation }) {
   const myContext = useContext(AppContext);
   const [stations, setStations] = React.useState(null);
   const [showmessage1, setShowmessage1] = React.useState(true);
-  const [currentTab, setCurrentTab]=React.useState(1);
+  const [currentTab, setCurrentTab] = React.useState(1);
 
   const showmessageFunc1 = () => {
     setShowmessage1(!showmessage1);
   };
 
-  const imageFraudUrl =
-    'https://s3-meetcody.s3.ap-northeast-2.amazonaws.com/fakecreateimage.png';
-  const screenWidth = Dimensions.get('window').width;
+  
+  const screenHeight = Dimensions.get('window').height;
   const androidBool = Platform.OS === 'android' ? true : false;
+  const bottomBar=Platform.OS === 'android' ? 70 :10+70;
+  const bottomBarPadding=Platform.OS === 'android' ? 0 :10;
+  
   const today = new Date();
   const date = today.getDate().toLocaleString();
   const month = (today.getMonth() + 1).toLocaleString();
   const day = today.getDay();
   let days = ['일', '월', '화', '수', '목', '금', '토'];
-  const message1 ='좋은 아침이예요!\n오늘은 '+month+'월 '+date +'일 '+days[day]+'요일 입니다!';
+  const message1 = '좋은 아침이예요!\n오늘은 ' + month + '월 ' + date + '일 ' + days[day] + '요일 입니다!';
+
+  const iosStatusBarHeight= Platform.OS==='android'?0:getStatusBarHeight();
   
+  const confirmheight=Platform.OS ==='android'? screenHeight- StatusBar.currentHeight-50-(showmessage1===true?60:0)-170-10-bottomBar:screenHeight-iosStatusBarHeight-50-(showmessage1===true?60:0)-170-10-bottomBar;
 
   return (
     <SafeAreaView style={styles.mainSafeViewArea}>
@@ -66,7 +73,7 @@ export default function MainScreen({ navigation }) {
         rightIcons={[
           {
             image: require('../../asset/searchicon.png'),
-            onPress: () => console.log('Right Phone !'),
+            onPress: () => console.log('돋보기 버튼 !'),
             resizeMode: 'contain',
             width: 5,
           },
@@ -81,12 +88,7 @@ export default function MainScreen({ navigation }) {
           <TouchableOpacity
             onPress={() => showmessageFunc1()}
             style={styles.mainMeesageBox}>
-            <Text
-              style={{
-                textAlignVertical: 'center',
-                fontSize: 13,
-                color: '#fff',
-              }}>
+            <Text style={styles.mainMessageText}>
               {message1}
             </Text>
           </TouchableOpacity>
@@ -95,21 +97,24 @@ export default function MainScreen({ navigation }) {
         <></>
       )}
 
-      {currentTab===1?<MainTab1 navigation={navigation}></MainTab1>:<></>}
+      {currentTab === 1 ? <MainTab1 navigation={navigation} confirmheight={confirmheight}></MainTab1> : <></>}
 
-      <View style={{position:"absolute", bottom:0, height:70, flexDirection:"row", width:"100%", alignContent:"center"}}>
-        <TouchableOpacity activeOpacity={1} onPress={()=>setCurrentTab(1)} style={{width:"50%", alignItems:"center",}}>
-          <View style={{height:"100%"}}>
-          <Image source={require('../../asset/meetcody_logo.png')} style={{width:50, resizeMode:"contain", height:30}} />
-          <Text>일정 생성</Text>
+      <View style={[styles.mainTabView, {height:bottomBar}]}>
+        <TouchableOpacity activeOpacity={1} onPress={() => setCurrentTab(1)} style={{ width: "50%", justifyContent:'center', paddingBottom:bottomBarPadding, }}  >
+          <View style={styles.mainTabTwoView}>
+            <Image source={require('../../asset/meetcody_logo.png')} style={{ width: 50, resizeMode: "contain", height: 30 }} />
+            <Text>일정 생성</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity activeOpacity={1} onPress={()=>setCurrentTab(2)} style={{width:"50%", alignItems:"center",}}>
-          <Text>일정조회</Text>
+        <TouchableOpacity activeOpacity={1} onPress={() => setCurrentTab(2)} style={{ width: "50%", justifyContent:'center', paddingBottom:bottomBarPadding}}>
+          <View style={styles.mainTabTwoView}>
+          <Image source={require('../../asset/meetcody_logo.png')} style={{ width: 50, resizeMode: "contain", height: 30 }} />
+            <Text>일정조회</Text>
+          </View>
         </TouchableOpacity>
-      
+
       </View>
-    
+
     </SafeAreaView>
   );
 }
