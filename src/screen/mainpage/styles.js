@@ -13,6 +13,11 @@ const absoluteStretch = {
 };
 
 export default StyleSheet.create({
+  mainSafeViewArea:{
+    flex: 1, 
+    alignItems: 'center', 
+    paddingTop: Platform.OS === 'android' ? 25 : 0, 
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -71,20 +76,30 @@ export default StyleSheet.create({
     lineHeight: 20,
     
   },
-  mainNeedConfirmMeet:{
+  mainNeedConfirmMeetTouch:{
     width:screenWidth-25,
-    height:150
+    height:140,
+    borderColor: '#000',
+    borderWidth: 1,
+    borderRadius: 5,
+    paddingTop:10,
+    marginTop:10,
   },
   mainNeedConfirmMeetHead:{
     fontSize:16,
     marginLeft:20,
     fontWeight:'bold',
-    alignSelf:'baseline'
+    // alignSelf:'baseline',
+    // flex:1,
+    width:(screenWidth-45)*0.8
   },
   mainNeedConfirmMeetOwner:{
     fontSize:16,
-    textAlign:'right',
-    
+    textAlign:'center',
+    // alignSelf:'flex-end',
+    // flex:2,
+    width:(screenWidth-45)*0.2,
+
   },
   mainNeedConfirmMeetText:{
     marginLeft:20,
