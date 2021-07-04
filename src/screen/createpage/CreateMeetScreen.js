@@ -17,7 +17,7 @@ import {
 } from 'react-native';
 import styles from './styles';
 import {TextInput} from 'react-native-paper';
-import ActionBar from 'react-native-action-bar';
+import MainActionBar from '../mainpage/MainActionBar';
 import MultiSelect from 'react-native-multiple-select';
 
 //import {CalendarList} from 'react-native-common-date-picker';
@@ -92,16 +92,7 @@ export default function CreateMeetScreen({navigation}) {
       ) : (
         <></>
       )}
-      <ActionBar
-        containerStyle={{height: 50, alignSelf: 'center', paddingRight: 40}}
-        backgroundColor={'#fff'}
-        title={'약속 생성'}
-        titleStyle={{color: '#000', textAlign: 'center'}}
-        onLeftPress={() => navigation.goBack()}
-        leftIconContainerStyle={{marginTop: 20}}
-        leftIconName={'back'}
-        leftIconImageStyle={{tintColor: '#000000'}}
-      />
+      <MainActionBar navigation={navigation} title={'CreateMeetScreen'} />
 
       <ScrollView style={styles.contents}>
         <TextInput
