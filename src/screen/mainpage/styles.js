@@ -130,6 +130,6 @@ export default StyleSheet.create({
   mainTabTwoView:{
     height: 45, 
     alignSelf:'center',
-    marginRight:20,
+    marginRight:30,
   },
 });

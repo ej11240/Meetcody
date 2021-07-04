@@ -17,6 +17,7 @@ import axios from 'axios';
 import styles from './styles';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { DrawerActions } from '@react-navigation/native';
+import Entypo from 'react-native-vector-icons/Entypo';
 
 export default function MainTab1(props) {
   const navigation=()=>props.navigation.navigate('CreateMeet');
@@ -41,10 +42,11 @@ export default function MainTab1(props) {
               alignItems: 'center',
             }}
             activeOpacity={1}>
-            <Image
+            {/* <Image
               source={require('../../asset/plusicon.png')}
               style={{ height: 60, width: 60, resizeMode: 'contain' }}
-            />
+            /> */}
+            <Entypo name="circle-with-plus" size={60} color="#B6B6B6"/>
           </TouchableOpacity>
 
           <ScrollView
