@@ -19,71 +19,82 @@ import styles from './styles';
 import {TextInput} from 'react-native-paper';
 import MainActionBar from '../mainpage/MainActionBar';
 import MultiSelect from 'react-native-multiple-select';
+import SelectBox from 'react-native-multi-selectbox';
+import {xorBy} from 'lodash';
 
 //import {CalendarList} from 'react-native-common-date-picker';
 // import {Modal} from 'react-native-modals';
 // npm install react-native-simple-time-picker --save
 // npm install react-native-picker-select
 
-const LikeClock = () => {
-  const items = [
-    {
-      id: 'dawn',
-      name: '새벽',
-    },
-    {
-      id: 'morning',
-      name: '아침',
-    },
-    {
-      id: 'noon',
-      name: '점심',
-    },
-    {
-      id: 'night',
-      name: '저녁',
-    },
-  ];
-
-  // Data Source for the SearchableDropdown
-  const [selectedItems, setSelectedItems] = useState([]);
-
-  const onSelectedItemsChange = selectedItems => {
-    // Set Selected Items
-    setSelectedItems(selectedItems);
-  };
-
-  return (
-    <View>
-      <MultiSelect
-        hideTags
-        items={items}
-        uniqueKey="id"
-        onSelectedItemsChange={onSelectedItemsChange}
-        selectedItems={selectedItems}
-        selectText="선호하는 시간대를 선택해주세요."
-        searchInputPlaceholderText="선호하는 시간대를 선택해주세요."
-        onChangeInput={text => console.log(text)}
-        tagRemoveIconColor="#000"
-        tagBorderColor="#CCC"
-        tagTextColor="#CCC"
-        selectedItemTextColor="#CCC"
-        selectedItemIconColor="#CCC"
-        itemTextColor="#000"
-        displayKey="name"
-        searchInputStyle={{color: '#CCC'}}
-        submitButtonColor="#000"
-        submitButtonText="확인"
-      />
-      {/* <View>{this.multiSelect.getSelectedItemsExt(selectedItems)}</View> */}
-    </View>
-  );
-};
-
 export default function CreateMeetScreen({navigation}) {
   const myContext = useContext(AppContext);
   const [text, setText] = React.useState('');
   const androidBool = Platform.OS === 'android' ? true : false;
+
+  const [selectedTeam, setSelectedTeam] = useState({});
+  const [selectedTeams, setSelectedTeams] = useState([]);
+
+  const like_clock = [
+    {
+      id: 'dawn',
+      item: '새벽',
+    },
+    {
+      id: 'morning',
+      item: '아침',
+    },
+    {
+      id: 'noon',
+      item: '점심',
+    },
+    {
+      id: 'night',
+      item: '저녁',
+    },
+  ];
+
+  const place_option = [
+    {
+      item: '장소가 없는 모임이에요',
+      id: 'not_place',
+    },
+    {
+      item: '장소를 추천해주세요',
+      id: 'recommand_place',
+    },
+    {
+      item: '장소를 직접 입력할래요',
+      id: 'my_place',
+    },
+  ];
+
+  const calendar_permission_term = [
+    {
+      item: '3시간',
+      id: 'time_3',
+    },
+    {
+      item: '1일(24시간)',
+      id: 'day_1',
+    },
+    {
+      item: '3일',
+      id: 'day_3',
+    },
+    {
+      item: '1주일',
+      id: 'week_1',
+    },
+  ];
+
+  function onMultiChange() {
+    return item => setSelectedTeams(xorBy(selectedTeams, [item], 'id'));
+  }
+
+  function onChange() {
+    return val => setSelectedTeam(val);
+  }
 
   return (
     <SafeAreaView style={styles.mainSafeViewArea}>
@@ -102,12 +113,31 @@ export default function CreateMeetScreen({navigation}) {
           onChangeText={text => setText(text)}
         />
         <Text style={{paddingTop: 20}}>약속 날짜 범위</Text>
-        <Text>회의 지속 시간</Text>
-        <Text>선호 시간대(중복 선택 가능)</Text>
-        <LikeClock />
+        <Text style={{paddingTop: 20}}>회의 지속 시간</Text>
 
-        <Text>장소 선택</Text>
-        <Text>캘린더 접근 허용 기한 선택</Text>
+        <SelectBox
+          label="선호 시간대(중복 선택 가능)"
+          options={like_clock}
+          selectedValues={selectedTeams}
+          onMultiSelect={onMultiChange()}
+          onTapClose={onMultiChange()}
+          isMulti
+        />
+
+        <SelectBox
+          label="장소 선택"
+          options={place_option}
+          value={selectedTeam}
+          onChange={onChange()}
+          hideInputFilter={false}
+        />
+        <SelectBox
+          label="캘린더 접근 허용 기한 선택"
+          options={calendar_permission_term}
+          value={selectedTeam}
+          onChange={onChange()}
+          hideInputFilter={false}
+        />
       </ScrollView>
       <View style={styles.fixToText}>
         <TouchableOpacity
