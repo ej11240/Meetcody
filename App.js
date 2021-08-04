@@ -16,19 +16,19 @@ export default function App() {
   // -> 연락처 입력 완료 -> isContact = true 
   // -> 메인 화면
   const [isLoading, setIsLoading] = useState();
-  const [userToken, setUserToken] = useState('유저토큰!!');
+  const [userInfo, setUserInfo] = useState();
   const [isSignIn, setIsSignIn] = useState(false);
   const [isContact, setIsContact] = useState(false);
 
   const userSettings = {
     isLoading: isLoading,
-    userToken: userToken,
+    userInfo: userInfo,
     isContact: isContact,
     isSignIn: isSignIn,
     setIsLoading,
-    setUserToken,
     setIsContact,
     setIsSignIn,
+    setUserInfo,
   };
 
   if (isLoading) {

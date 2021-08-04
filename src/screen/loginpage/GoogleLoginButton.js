@@ -14,12 +14,15 @@ import styles from './SignInStyles';
 
 const GoogleLoginButton = () => {
     const myContext = useContext(AppContext);
-
+    
     const signIn = async () => {
         try {
             await GoogleSignin.hasPlayServices();
-            const {accessToken, idToken} = await GoogleSignin.signIn();
+            const userInfo = await GoogleSignin.signIn();
+            myContext.setUserInfo(userInfo);
             myContext.setIsSignIn(true);
+            console.log(userInfo);
+            console.table(userInfo);
         } catch (error) {
             console.log(error);
             if (error.code === statusCodes.SIGN_IN_CANCELLED) {

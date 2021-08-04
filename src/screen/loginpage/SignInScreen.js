@@ -25,6 +25,7 @@ function SignInScreen() {
           <SignInHeader />
           <View style={styles.body}>
             <LoadContactButton />
+            <GoogleLoginButton />
             {/* {myContext.isSignIn 
             ? <LoadContactButton />
             : <GoogleLoginButton />
