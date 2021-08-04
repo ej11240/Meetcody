@@ -2,25 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-<key>UIAppFonts</key>
-<array>
-  <string>AntDesign.ttf</string>
-  <string>Entypo.ttf</string>
-  <string>EvilIcons.ttf</string>
-  <string>Feather.ttf</string>
-  <string>FontAwesome.ttf</string>
-  <string>FontAwesome5_Brands.ttf</string>
-  <string>FontAwesome5_Regular.ttf</string>
-  <string>FontAwesome5_Solid.ttf</string>
-  <string>Foundation.ttf</string>
-  <string>Ionicons.ttf</string>
-  <string>MaterialIcons.ttf</string>
-  <string>MaterialCommunityIcons.ttf</string>
-  <string>SimpleLineIcons.ttf</string>
-  <string>Octicons.ttf</string>
-  <string>Zocial.ttf</string>
-  <string>Fontisto.ttf</string>
-</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -46,9 +27,10 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.292029632893-1ihajbgscode415pj6g8d9d2c54n29ar</string>
+				<string>com.googleusercontent.apps.779758145179-8b5dldlnh3lap6u49h4lmb1smf3vvmuj</string>
 			</array>
 		</dict>
+		<dict/>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
@@ -67,6 +49,25 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>AntDesign.ttf</string>
+		<string>Entypo.ttf</string>
+		<string>EvilIcons.ttf</string>
+		<string>Feather.ttf</string>
+		<string>FontAwesome.ttf</string>
+		<string>FontAwesome5_Brands.ttf</string>
+		<string>FontAwesome5_Regular.ttf</string>
+		<string>FontAwesome5_Solid.ttf</string>
+		<string>Foundation.ttf</string>
+		<string>Ionicons.ttf</string>
+		<string>MaterialIcons.ttf</string>
+		<string>MaterialCommunityIcons.ttf</string>
+		<string>SimpleLineIcons.ttf</string>
+		<string>Octicons.ttf</string>
+		<string>Zocial.ttf</string>
+		<string>Fontisto.ttf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>

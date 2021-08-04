@@ -3,7 +3,7 @@ import {
   View,
   Text,
 } from 'react-native';
-import styles from './loginpage/styles';
+import styles from './loginpage/SignInStyles';
 
 export default function SplashScreen() {
   return (

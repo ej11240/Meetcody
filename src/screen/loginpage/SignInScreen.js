@@ -1,23 +1,42 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import {
-    View,
-    Text,
-    Button,
-    TextInput,
+  Text,
+  TouchableOpacity,
+  SafeAreaView,
+  ScrollView,
+  View,
+  StatusBar
 } from 'react-native';
 import AppContext from '../../context/AppContext';
-import styles from './styles';
+import SignInHeader from './SignInHeader';
+import GoogleLoginButton from './GoogleLoginButton';
+import LoadContactButton from './LoadContactButton';
+import styles from './SignInStyles';
 
-export default function SignInScreen({ navigation }) {
-    const myContext = useContext(AppContext);
-    return (
-        <View style={styles.container}>
-            <Text>Login</Text>
-            <Button onPress={() => myContext.setIsLoggedIn(true)} title='로그인 하기' />
-            <Button onPress={() => navigation.navigate('SignUp')} title="SignUp" />
-            <Button onPress={() => navigation.navigate('ResetPassword')} title="ResetPassword" />
-            <Button onPress={() => navigation.navigate('AxiosTest')} title="AxiosTest" />
-            <Button onPress={() => navigation.navigate('tempScreen')} title="tempScreen" />
-        </View>
-    );
+
+function SignInScreen() {
+  const myContext = useContext(AppContext);
+
+  return (
+    <>
+      <StatusBar barStyle="dark-content" />
+      <SafeAreaView style={styles.container}>
+        <ScrollView contentInsetAdjustmentBehavior="automatic">
+          <SignInHeader />
+          <View style={styles.body}>
+            <LoadContactButton />
+            {/* {myContext.isSignIn 
+            ? <LoadContactButton />
+            : <GoogleLoginButton />
+            } */}
+            <TouchableOpacity style={styles.button} onPress={() => myContext.setIsContact(true)} >
+              <Text style={styles.buttonText}>메인화면으로 가기</Text>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    </>
+  );
 }
+
+export default SignInScreen;
