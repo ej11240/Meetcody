@@ -13,6 +13,7 @@ import {
   TouchableOpacity,
   StatusBar,
   StyleSheet,
+  Button,
 } from 'react-native';
 import styles from './styles';
 import {TextInput} from 'react-native-paper';
@@ -24,6 +25,8 @@ import MainActionBar from '../mainpage/MainActionBar';
 import RNPickerSelect from 'react-native-picker-select';
 import {TimePicker} from 'react-native-simple-time-picker';
 import DatePicker from 'react-native-date-ranges';
+import DateRangePicker from './DateRangePicker';
+import {black} from 'react-native-paper/lib/typescript/styles/colors';
 
 //import {CalendarList} from 'react-native-common-date-picker';
 // import {Modal} from 'react-native-modals';
@@ -36,12 +39,13 @@ export default function CreateMeetScreen({navigation}) {
   const placeholder = '값을 입력해주세요.';
   const [inputs, setInputs] = useState({
     name: '',
+    datepick: '',
     like: '',
     place: '',
     term: '',
   });
 
-  const {name, like, place, term} = inputs;
+  const {name, datepick, like, place, term} = inputs;
 
   const onChangeText = value => {
     setInputs(value);
@@ -61,20 +65,23 @@ export default function CreateMeetScreen({navigation}) {
       ) : (
         <></>
       )}
+
       <MainActionBar navigation={navigation} title={'CreateMeetScreen'} />
 
       <ScrollView style={styles.contents}>
-        <TextInput
-          name="name"
-          style={{fontSize: 18, width: 325, height: 50}}
-          mode="outlined"
-          label="약속 이름"
-          value={name}
-          onChangeText={onChangeText}
-        />
-
-        <Text style={{paddingTop: 20}}>약속 날짜 범위</Text>
-        <DatePicker
+        <View>
+          <TextInput
+            name="name"
+            style={{fontSize: 18, flex: 1}}
+            mode="outlined"
+            label="약속 이름"
+            value={name}
+            onChangeText={onChangeText}
+          />
+        </View>
+        <View>
+          <Text style={{paddingTop: 20}}>약속 날짜 범위</Text>
+          {/* <DatePicker
           style={{width: 310, height: 40, margin: 10}}
           customStyles={{
             placeholderText: {fontSize: 20}, // placeHolder style
@@ -88,24 +95,30 @@ export default function CreateMeetScreen({navigation}) {
           allowFontScaling={false} // optional
           placeholder={'Jul 27, 2021 → Jul 29, 2021'}
           mode={'range'}
-        />
-        <Text style={{paddingTop: 20}}>약속 지속 시간</Text>
-        <TimePicker
-          value={{hours, minutes}}
-          onChange={handleChange}
-          hoursUnit="시간"
-          minutesUnit="분"
-          minutesInterval={5}
-        />
+        /> */}
 
-        <Text style={{paddingTop: 20}}>선호 시간대</Text>
-        <View
-          style={{
-            flex: 1,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-          <View style={{width: 330}}>
+          <View style={datestyles.container}>
+            <DateRangePicker
+              style={{width: 330}}
+              initialRange={['2021-08-01', '2021-08-05']}
+              onSuccess={(s, e) => alert(s + ' ~ ' + e)}
+              theme={{markColor: '#6799FF', markTextColor: 'white'}}
+            />
+          </View>
+        </View>
+        <View>
+          <Text style={{paddingTop: 20}}>약속 지속 시간</Text>
+          <TimePicker
+            value={{hours, minutes}}
+            onChange={handleChange}
+            hoursUnit="시간"
+            minutesUnit="분"
+            minutesInterval={5}
+          />
+        </View>
+        <View>
+          <Text style={{paddingTop: 20}}>선호 시간대</Text>
+          <View style={{flex: 1}}>
             <RNPickerSelect
               textInputProps={{underlineColorAndroid: 'transparent'}}
               placeholder={{
@@ -126,14 +139,10 @@ export default function CreateMeetScreen({navigation}) {
           </View>
         </View>
 
-        <Text style={{paddingTop: 20}}>장소 선택</Text>
-        <View
-          style={{
-            flex: 1,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-          <View style={{width: 330}}>
+        <View>
+          <Text style={{paddingTop: 20}}>장소 선택</Text>
+
+          <View style={{flex: 1}}>
             <RNPickerSelect
               textInputProps={{underlineColorAndroid: 'transparent'}}
               placeholder={{
@@ -152,14 +161,11 @@ export default function CreateMeetScreen({navigation}) {
             />
           </View>
         </View>
-        <Text style={{paddingTop: 20}}>캘린더 접근 허용 기한 선택</Text>
-        <View
-          style={{
-            flex: 1,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-          <View style={{width: 330}}>
+
+        <View>
+          <Text style={{paddingTop: 20}}>캘린더 접근 허용 기한 선택</Text>
+
+          <View style={{flex: 1, marginBottom: 40}}>
             <RNPickerSelect
               textInputProps={{underlineColorAndroid: 'transparent'}}
               placeholder={{
@@ -192,12 +198,14 @@ export default function CreateMeetScreen({navigation}) {
       </ScrollView>
       <View style={styles.fixToText}>
         <TouchableOpacity
+          activeOpacity={1}
           style={styles.button}
           onPress={() => navigation.goBack()}>
           <Text>취소</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
+          activeOpacity={1}
           style={styles.button}
           onPress={() => Alert.alert('약속이 생성되었습니다.')}>
           <Text>저장</Text>
@@ -210,8 +218,7 @@ export default function CreateMeetScreen({navigation}) {
 const pickerSelectStyles = StyleSheet.create({
   inputIOS: {
     fontSize: 16,
-    height: 50,
-    width: 300,
+    flex: 1,
     color: '#000000',
     borderColor: '#000000',
     borderWidth: 1,
@@ -219,16 +226,23 @@ const pickerSelectStyles = StyleSheet.create({
     padding: 10,
   },
   inputAndroid: {
+    flex: 1,
     margin: 1,
+    marginBottom: 10,
     marginTop: 5,
     fontSize: 17,
-    height: 50,
-    width: 325,
     color: '#000000',
     padding: 10,
     borderColor: '#8C8C8C',
     borderWidth: 1,
     borderRadius: 5,
+    backgroundColor: '#F6F6F6',
+  },
+});
+
+const datestyles = StyleSheet.create({
+  container: {
+    flex: 1,
     backgroundColor: '#F6F6F6',
   },
 });
