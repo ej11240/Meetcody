@@ -6039,6 +6039,11 @@
     "jscodeshift" "^0.11.0"
     "nullthrows" "^1.1.1"
 
+"react-native-contacts@^7.0.2":
+  "integrity" "sha512-LCDznIOkVpdTPk18Wp94sLLpbQNKw0Y0tvqbEi5ik610UoQxzteq6Plqdo3mGyccgGLIKD6VMNRgac4mk0Fz2w=="
+  "resolved" "https://registry.npmjs.org/react-native-contacts/-/react-native-contacts-7.0.2.tgz"
+  "version" "7.0.2"
+
 "react-native-date-ranges@2.5.0":
   "integrity" "sha512-ewQZ84eBtaF3joS7cP93ANGrE8puMbfbr6pSpfGG8B5j0w/or1k/Pi8ix2b45321ZFYj7s77LKcyDnTiGAQidw=="
   "resolved" "https://registry.npmjs.org/react-native-date-ranges/-/react-native-date-ranges-2.5.0.tgz"
@@ -6218,7 +6223,7 @@
     "prop-types" "^15.7.2"
     "yargs" "^16.1.1"
 
-"react-native@>=0.41.2", "react-native@>=0.57", "react-native@0.64.2":
+"react-native@>=0.41.2", "react-native@>=0.57", "react-native@>=0.64.0", "react-native@0.64.2":
   "integrity" "sha512-Ty/fFHld9DcYsFZujXYdeVjEhvSeQcwuTGXezyoOkxfiGEGrpL/uwUZvMzwShnU4zbbTKDu2PAm/uwuOittRGA=="
   "resolved" "https://registry.npmjs.org/react-native/-/react-native-0.64.2.tgz"
   "version" "0.64.2"

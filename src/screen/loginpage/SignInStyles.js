@@ -42,6 +42,8 @@ export default StyleSheet.create({
         width: 250,
         borderWidth: 1,
         borderRadius: 100,
+        color: "gray",
+        fontSize: 15,
     },
     buttonTextBold: {
         fontWeight: 'bold',
