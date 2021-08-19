@@ -12,6 +12,8 @@ import SplashScreen from './src/screen/SplashScreen';
 // import tempScreen from './src/screen/loginpage/tempScreen';
 import CreateMeetScreen from './src/screen/createpage/CreateMeetScreen';
 import MainScreen from './src/screen/mainpage/MainScreen';
+import DetailScreen from './src/screen/mainpage/DetailScreen';
+import InviteFriendScreen from './src/screen/createpage/InviteFriendScreen';
 
 export default function App() {
   // 구글 로그인 완료 -> isSignIn = true 
@@ -70,6 +72,8 @@ const userScreens = {
   MainSideMenu: MainSideMenu,
   CreateMeet: CreateMeetScreen,
   MainScreen: MainScreen,
+  DetailScreen: DetailScreen,
+  InviteFriend: InviteFriendScreen,
 };
 
 const RootStack = createStackNavigator();

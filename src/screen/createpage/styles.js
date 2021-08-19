@@ -1,20 +1,31 @@
 import {StyleSheet, StatusBar} from 'react-native';
 
 export default StyleSheet.create({
-  container: {
+  mainSafeViewArea: {
     flex: 1,
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
   },
 
   contents: {
     flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center',
     borderWidth: 2,
     borderRadius: 10,
-    borderStyle: 'solid',
+    borderColor: 'white',
     margin: 20,
     padding: 20,
     backgroundColor: 'white',
+    shadowColor: '#000000',
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    elevation: 3,
+  },
+
+  container: {
+    flex: 1,
   },
 
   centeredView: {
@@ -61,9 +72,20 @@ export default StyleSheet.create({
 
   button: {
     alignItems: 'center',
-    backgroundColor: '#DDDDDD',
     padding: 10,
     width: '49%',
+    borderWidth: 2,
+    borderRadius: 10,
+    borderColor: 'white',
+    backgroundColor: 'white',
+    shadowColor: '#000000',
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    elevation: 3,
   },
 
   fixToText: {
@@ -72,10 +94,5 @@ export default StyleSheet.create({
     marginLeft: 20,
     marginRight: 20,
     marginBottom: 10,
-  },
-
-  mainSafeViewArea: {
-    flex: 1,
-    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
   },
 });
