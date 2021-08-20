@@ -1,10 +1,9 @@
 // @flow
 import * as React from 'react';
-import { StyleSheet, Dimensions, StatusBar } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import {StyleSheet, Dimensions, StatusBar} from 'react-native';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const screenWidth = Dimensions.get('window').width;
-
 
 const absoluteStretch = {
   position: 'absolute',
@@ -15,7 +14,6 @@ const absoluteStretch = {
 };
 
 export default StyleSheet.create({
-
   mainSafeViewArea: {
     flex: 1,
     alignItems: 'center',
@@ -59,6 +57,15 @@ export default StyleSheet.create({
     borderRadius: 7,
     paddingTop: 10,
     paddingLeft: 10,
+    borderColor: 'white',
+    shadowColor: '#000000',
+    shadowOpacity: 1,
+    shadowRadius: 5,
+    shadowOffset: {
+      width: 5,
+      height: 5,
+    },
+    elevation: 5,
   },
   mainMessageText: {
     textAlignVertical: 'center',
@@ -66,7 +73,6 @@ export default StyleSheet.create({
     color: '#fff',
   },
   mainCustomMeet: {
-    borderColor: '#000',
     borderWidth: 1,
     borderRadius: 5,
     width: 80,
@@ -75,7 +81,18 @@ export default StyleSheet.create({
     alignItems: 'center',
     alignContent: 'center',
     justifyContent: 'center',
+    borderColor: 'white',
+    backgroundColor: 'white',
+    shadowColor: '#000000',
+    shadowOpacity: 1,
+    shadowRadius: 5,
+    shadowOffset: {
+      width: 5,
+      height: 5,
+    },
+    elevation: 5,
   },
+
   mainCustomMeetText: {
     shadowColor: '#fff',
     lineHeight: 20,
@@ -83,18 +100,35 @@ export default StyleSheet.create({
   mainNeedConfirmMeetTouch: {
     width: screenWidth - 25,
     height: 140,
-    borderColor: '#000',
     borderWidth: 1,
     borderRadius: 5,
     paddingTop: 10,
     marginTop: 10,
+    borderColor: 'white',
+    backgroundColor: 'white',
+    shadowColor: '#000000',
+    shadowOpacity: 1,
+    shadowRadius: 5,
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    elevation: 5,
   },
+
   mainNeedConfirmMeetHead: {
     fontSize: 16,
     marginLeft: 20,
     fontWeight: 'bold',
     // alignSelf:'baseline',
     // flex:1,
+    width: (screenWidth - 45) * 0.8,
+  },
+
+  mainConfirmedMeetHead: {
+    fontSize: 16,
+    marginLeft: 15,
+    fontWeight: 'bold',
     width: (screenWidth - 45) * 0.8,
   },
   mainNeedConfirmMeetOwner: {
@@ -109,14 +143,20 @@ export default StyleSheet.create({
     fontSize: 13,
     marginTop: 15,
   },
+
+  mainConfirmedMeetText: {
+    marginLeft: 15,
+    fontSize: 14,
+    marginTop: 7,
+  },
   mainTabView: {
-    position: "absolute",
+    position: 'absolute',
     bottom: 0,
     height: 70,
-    flexDirection: "row",
-    width: "100%",
-    alignContent: "center",
-    shadowColor: "#000",
+    flexDirection: 'row',
+    width: '100%',
+    alignContent: 'center',
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 2,
@@ -125,11 +165,30 @@ export default StyleSheet.create({
     shadowRadius: 7.49,
 
     elevation: 12,
-    backgroundColor: "#fff"
+    backgroundColor: '#fff',
   },
-  mainTabTwoView:{
-    height: 45, 
-    alignSelf:'center',
-    marginRight:30,
+  mainTabTwoView: {
+    height: 45,
+    alignSelf: 'center',
+    marginRight: 30,
+  },
+
+  mainCalendar: {
+    borderWidth: 1,
+    borderRadius: 5,
+    width: 300,
+    height: 100,
+    marginLeft: 15,
+    justifyContent: 'center',
+    borderColor: 'white',
+    backgroundColor: 'white',
+    shadowColor: '#000000',
+    shadowOpacity: 1,
+    shadowRadius: 5,
+    shadowOffset: {
+      width: 5,
+      height: 5,
+    },
+    elevation: 5,
   },
 });
