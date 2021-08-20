@@ -31,9 +31,9 @@ function LoadContactScreen({ navigation }) {
   const loadContacts = () => {
     Contacts.getAll()
       .then(contacts => {
-        console.log('hah');
         myContext.setUserInfo({...myContext.userInfo, ...{contact: contacts}});
         navigation.navigate('Nickname');
+        console.log('>>>>>>>>>myCodtext.userInfo:', myContext.userInfo);
       })
       .catch(e => {
         alert(e);
