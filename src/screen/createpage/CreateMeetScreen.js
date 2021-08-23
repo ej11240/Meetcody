@@ -1,6 +1,3 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable react-native/no-inline-styles */
-/* eslint-disable no-unused-vars */
 import * as React from 'react';
 import {useState} from 'react';
 import {
@@ -13,7 +10,6 @@ import {
   TouchableOpacity,
   StatusBar,
   StyleSheet,
-  Button,
 } from 'react-native';
 import styles from './styles';
 import {TextInput} from 'react-native-paper';
@@ -81,22 +77,6 @@ export default function CreateMeetScreen({navigation}) {
         </View>
         <View>
           <Text style={{paddingTop: 20}}>약속 날짜 범위</Text>
-          {/* <DatePicker
-          style={{width: 310, height: 40, margin: 10}}
-          customStyles={{
-            placeholderText: {fontSize: 20}, // placeHolder style
-            headerStyle: {}, // title container style
-            headerMarkTitle: {}, // title mark style
-            headerDateTitle: {}, // title Date style
-            contentInput: {}, //content text container style
-            contentText: {}, //after selected text Style
-          }} // optional
-          centerAlign // optional text will align center or not
-          allowFontScaling={false} // optional
-          placeholder={'Jul 27, 2021 → Jul 29, 2021'}
-          mode={'range'}
-        /> */}
-
           <View style={datestyles.container}>
             <DateRangePicker
               style={{width: 330}}
@@ -163,7 +143,7 @@ export default function CreateMeetScreen({navigation}) {
         </View>
 
         <View>
-          <Text style={{paddingTop: 20}}>캘린더 접근 허용 기한 선택</Text>
+          <Text style={{paddingTop: 20}}>초대장 유효 기간</Text>
 
           <View style={{flex: 1, marginBottom: 40}}>
             <RNPickerSelect
