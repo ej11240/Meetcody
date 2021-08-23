@@ -31,7 +31,7 @@ export default function MainTab2(props) {
         <Text style={styles.mainScreenHeadline} allowFontScaling={false}>
           확정된 일정 조회
         </Text>
-        <View style={{marginTop: 20, height: 500}}>
+        <View style={{marginTop: 20, height: 550}}>
           <ScrollView showsVerticalScrollIndicator={false}>
             <View
               style={{
