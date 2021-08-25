@@ -47,7 +47,7 @@ export default StyleSheet.create({
     width: screenWidth - 20,
     marginTop: 20,
   },
-  mainMeesageBox: {
+  mainMessageBox: {
     textAlign: 'left',
     justifyContent: 'flex-start',
     width: screenWidth - 20,
@@ -59,13 +59,13 @@ export default StyleSheet.create({
     paddingLeft: 10,
     borderColor: 'white',
     shadowColor: '#000000',
-    shadowOpacity: 1,
-    shadowRadius: 5,
+    shadowOpacity: 0.25,
+    shadowRadius: 3.5,
     shadowOffset: {
-      width: 5,
-      height: 5,
+      width: 0,
+      height: 2,
     },
-    elevation: 5,
+    elevation:2
   },
   mainMessageText: {
     textAlignVertical: 'center',
