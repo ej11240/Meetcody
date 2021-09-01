@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import AppContext from '../../context/AppContext';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
@@ -7,6 +7,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import InviteAcceptScreen from '../inviteacceptpage/InviteAcceptScreen';
 
 import {
     View,
@@ -75,7 +76,13 @@ export default function MainScreen({ navigation }) {
             10 -
             bottomBar;
 
-
+    // 페이지가 로딩되는 때에만 한번 실행
+    useEffect(() => {
+         if (myContext.isInvitation === true) {
+        navigation.navigate(InviteAcceptScreen);
+    }
+    }, []);
+   
 
     const [userName , setUserName] = React.useState(null);
     const [userEmail , setUserEmail] = React.useState(null);

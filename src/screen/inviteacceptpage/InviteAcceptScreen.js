@@ -9,9 +9,25 @@ import Postcode from '@actbase/react-daum-postcode';
 import { useState, useEffect } from 'react';
 import { WebView } from 'react-native-webview';
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import MainScreen from '../mainpage/MainScreen';
 
 
 export default function InviteAcceptScreen({ navigation }) {
+    const myContext = useContext(AppContext);
+
+    AsyncStorage.getItem("email")
+        .then((result)=>{ 
+            if(result!==null){
+                // 서버에 회원 정보 전송
+                // if 회원 -> 수락화면
+            } else {
+                // 회원 아님 -> 구글 로그인, 휴대폰 번호 입력
+                myContext.setinvitation(true);
+                myContext.setIsSignIn(false);
+            }
+        });
+
     const [invitorName, setInvitorName] = React.useState("유진");
     const [scheduleName, setScheduleName] = React.useState("졸업프로젝트");
     const [scheduleDate, setScheduleDate] = React.useState("2021년 5월 10일");
@@ -129,7 +145,7 @@ export default function InviteAcceptScreen({ navigation }) {
                                     <TouchableOpacity style={styles.button2} onPress={() => { setModal(true); }} >
                                         <Text style={styles.buttonTextNoBox}>출발 장소 다시 입력</Text>
                                     </TouchableOpacity>
-                                    <TouchableOpacity style={styles.button} onPress={() => { sendStartLoctoServer(); }} >
+                                    <TouchableOpacity style={styles.button} onPress={() => { myContext.setIsInvitation(false); sendStartLoctoServer(); }} >
                                         <Text style={styles.buttonText}>초대 수락하기</Text>
                                     </TouchableOpacity>
                                 </View>
@@ -141,10 +157,10 @@ export default function InviteAcceptScreen({ navigation }) {
                                         <Text style={styles.buttonText}>어디에서 출발하시나요?</Text>
                                     </TouchableOpacity>
 
-                                    <TouchableOpacity style={styles.button2} onPress={() => { }} >
+                                    <TouchableOpacity style={styles.button2} onPress={() => { myContext.setIsInvitation(false); navigation.navigate(MainScreen);}} >
                                         <Text style={styles.buttonTextNoBox}>상관없어요!</Text>
                                     </TouchableOpacity>
-                                    <TouchableOpacity style={styles.button2} onPress={() => { test();}} >
+                                    <TouchableOpacity style={styles.button2} onPress={() => { myContext.setIsInvitation(false); test();}} >
                                         <Text style={styles.buttonTextNoBox}>상관없어요!</Text>
                                     </TouchableOpacity>
                                 </View>
