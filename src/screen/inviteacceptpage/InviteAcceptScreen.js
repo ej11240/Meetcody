@@ -26,8 +26,14 @@ export default function InviteAcceptScreen({ navigation }) {
 
 
     const sendStartLoctoServer = () => {
+        navigation.goBack();
+    }
+
+    
+
+    const test =()=>{
         axios
-            .post('http://localhost:8080/', {
+            .post('http://localhost:8080/calendergettest', {
                 // input1: "서울특별시 도봉구 시루봉로 58",
                 // input2: "서울특별시 도봉구 시루봉로 58"
             }
@@ -136,6 +142,9 @@ export default function InviteAcceptScreen({ navigation }) {
                                     </TouchableOpacity>
 
                                     <TouchableOpacity style={styles.button2} onPress={() => { }} >
+                                        <Text style={styles.buttonTextNoBox}>상관없어요!</Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity style={styles.button2} onPress={() => { test();}} >
                                         <Text style={styles.buttonTextNoBox}>상관없어요!</Text>
                                     </TouchableOpacity>
                                 </View>

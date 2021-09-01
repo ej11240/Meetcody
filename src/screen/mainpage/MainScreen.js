@@ -1,11 +1,12 @@
 import * as React from 'react';
-import {useContext} from 'react';
+import { useContext } from 'react';
 import AppContext from '../../context/AppContext';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {getStatusBarHeight} from 'react-native-status-bar-height';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { getStatusBarHeight } from 'react-native-status-bar-height';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {
     View,
@@ -26,7 +27,7 @@ import MainTab1 from './MainTab1';
 import MainTab2 from './MainTab2';
 import MainActionBar from './MainActionBar';
 
-export default function MainScreen({navigation}) {
+export default function MainScreen({ navigation }) {
     const myContext = useContext(AppContext);
     const [showmessage1, setShowmessage1] = React.useState(true);
     const [currentTab, setCurrentTab] = React.useState(1);
@@ -74,17 +75,38 @@ export default function MainScreen({navigation}) {
             10 -
             bottomBar;
 
+
+
+    const value = AsyncStorage.getItem('@userinfo_email');
+    if (value !== null) {
+        AsyncStorage.getItem('@userinfo_email', (err, result) => {
+            const UserInfo = JSON.parse(result);
+            console.log('로그인한 email : ' + UserInfo);
+        });
+        AsyncStorage.getItem('@userinfo_name', (err, result) => {
+            const UserInfo = JSON.parse(result);
+            console.log('로그인한 name : ' + UserInfo);
+        });
+    }
+    else {
+        console.log("로그인안함" + value);
+    }
+
+
+    // error reading value
+
+
     return (
         <SafeAreaView style={styles.mainSafeViewArea}>
             {androidBool === true ? (
-                <StatusBar barStyle="dark-content" hidden={false} translucent={true}/>
+                <StatusBar barStyle="dark-content" hidden={false} translucent={true} />
             ) : (
                 <></>
             )}
-            <MainActionBar navigation={navigation} title={'Home'}/>
+            <MainActionBar navigation={navigation} title={'Home'} />
 
             {showmessage1 ? (
-                <View style={{alignContent: 'center', height: 50, marginTop: 10}}>
+                <View style={{ alignContent: 'center', height: 50, marginTop: 10 }}>
                     <TouchableOpacity
                         onPress={() => showmessageFunc1()}
                         style={styles.mainMessageBox}>
@@ -111,7 +133,7 @@ export default function MainScreen({navigation}) {
                 <></>
             )}
 
-            <View style={[styles.mainTabView, {height: bottomBar}]}>
+            <View style={[styles.mainTabView, { height: bottomBar }]}>
                 <TouchableOpacity
                     activeOpacity={1}
                     onPress={() => setCurrentTab(1)}
@@ -121,10 +143,10 @@ export default function MainScreen({navigation}) {
                         paddingBottom: bottomBarPadding,
                     }}>
                     <View
-                        style={[styles.mainTabTwoView, {marginRight: 0, marginLeft: 30}]}>
+                        style={[styles.mainTabTwoView, { marginRight: 0, marginLeft: 30 }]}>
                         <Image
                             source={require('../../asset/meetcody_logo.png')}
-                            style={{width: 50, resizeMode: 'contain', height: 40}}
+                            style={{ width: 50, resizeMode: 'contain', height: 40 }}
                         />
                         <Text>일정 생성</Text>
                     </View>
@@ -145,8 +167,8 @@ export default function MainScreen({navigation}) {
                                 alignSelf: 'center',
                                 position: 'absolute',
                             }}>
-                            <Entypo name="calendar" size={40} style={{textAlign: 'center'}}/>
-                            <Text style={{textAlign: 'center'}}>일정조회</Text>
+                            <Entypo name="calendar" size={40} style={{ textAlign: 'center' }} />
+                            <Text style={{ textAlign: 'center' }}>일정조회</Text>
                         </View>
                         <View
                             style={{
@@ -155,7 +177,7 @@ export default function MainScreen({navigation}) {
                                 alignSelf: 'center',
                                 justifyContent: 'center',
                             }}>
-                            <Text style={{textAlign: 'center'}}>{date}</Text>
+                            <Text style={{ textAlign: 'center' }}>{date}</Text>
                         </View>
                     </View>
                 </TouchableOpacity>

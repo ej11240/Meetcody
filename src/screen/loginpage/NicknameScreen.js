@@ -12,6 +12,7 @@ import axios from 'axios';
 import AppContext from '../../context/AppContext';
 import SignInHeader from './SignInHeader';
 import styles from './SignInStyles';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 function NicknameScreen({ navigation }) {
@@ -42,12 +43,24 @@ function NicknameScreen({ navigation }) {
                 // handle success
                 alert(JSON.stringify(response.data));
                 console.table(JSON.stringify(response.data));
+                if(JSON.stringify(response.data)!=null){
+                    
+                    try {
+                        console.log(value);
+                        AsyncStorage.setItem('@userinfo_name', nickname);
+                        AsyncStorage.setItem('@userinfo_email', JSON.stringify(myContext.userInfo.user.email));
+                        
+                    } catch (e) {
+                      // saving error
+                    }
+                }
             })
             .catch(function (error) {
                 // handle error
                 alert(error.message);
             });
     };
+
 
     return (
         <>
