@@ -10,7 +10,7 @@ import {
   TouchableOpacity,
   StatusBar,
 } from 'react-native';
-import styles from './styles';
+import styles from '../createpage/styles';
 import MainActionBar from '../mainpage/MainActionBar';
 
 export default function DetailScreen({navigation}) {
@@ -22,11 +22,12 @@ export default function DetailScreen({navigation}) {
       ) : (
         <></>
       )}
-      <MainActionBar navigation={navigation} title={'CreateMeetScreen'} />
+      <MainActionBar navigation={navigation} title={'DetailScreen'} />
 
-      <ScrollView style={styles.contents}>
+      <View style={styles.contents}>
+
         <Text style={{paddingTop: 20}}>일정 상세 페이지</Text>
-      </ScrollView>
+      </View>
       <View style={styles.fixToText}>
         <TouchableOpacity
           style={styles.button}
@@ -37,7 +38,7 @@ export default function DetailScreen({navigation}) {
         <TouchableOpacity
           style={styles.button}
           onPress={() => Alert.alert('약속이 생성되었습니다.')}>
-          <Text>저장</Text>
+          <Text>확인</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

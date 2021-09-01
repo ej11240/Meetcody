@@ -14,6 +14,7 @@ import CreateMeetScreen from './src/screen/createpage/CreateMeetScreen';
 import MainScreen from './src/screen/mainpage/MainScreen';
 import DetailScreen from './src/screen/mainpage/DetailScreen';
 import InviteFriendScreen from './src/screen/createpage/InviteFriendScreen';
+import InviteAcceptScreen from './src/screen/inviteacceptpage/InviteAcceptScreen';
 
 export default function App() {
   // 구글 로그인 완료 -> isSignIn = true 
@@ -74,6 +75,7 @@ const userScreens = {
   MainScreen: MainScreen,
   DetailScreen: DetailScreen,
   InviteFriend: InviteFriendScreen,
+  InviteAcceptScreen: InviteAcceptScreen,
 };
 
 const RootStack = createStackNavigator();

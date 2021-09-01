@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
-import {StyleSheet, Dimensions, StatusBar} from 'react-native';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import { StyleSheet, Dimensions, StatusBar } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -47,7 +47,7 @@ export default StyleSheet.create({
     width: screenWidth - 20,
     marginTop: 20,
   },
-  mainMeesageBox: {
+  mainMessageBox: {
     textAlign: 'left',
     justifyContent: 'flex-start',
     width: screenWidth - 20,
@@ -59,20 +59,20 @@ export default StyleSheet.create({
     paddingLeft: 10,
     borderColor: 'white',
     shadowColor: '#000000',
-    shadowOpacity: 1,
-    shadowRadius: 5,
+    shadowOpacity: 0.25,
+    shadowRadius: 3.5,
     shadowOffset: {
-      width: 5,
-      height: 5,
+      width: 0,
+      height: 2,
     },
-    elevation: 5,
+    elevation:2
   },
   mainMessageText: {
     textAlignVertical: 'center',
     fontSize: 13,
     color: '#fff',
   },
-  mainCustomMeet: {
+  mainCustomMeet: Platform.OS === "android" ? {
     borderWidth: 1,
     borderRadius: 5,
     width: 80,
@@ -84,6 +84,7 @@ export default StyleSheet.create({
     borderColor: 'white',
     backgroundColor: 'white',
     shadowColor: '#000000',
+
     shadowOpacity: 1,
     shadowRadius: 5,
     shadowOffset: {
@@ -91,13 +92,31 @@ export default StyleSheet.create({
       height: 5,
     },
     elevation: 5,
+  } : {
+    borderWidth: 1,
+    borderRadius: 5,
+    width: 80,
+    height: 95,
+    marginLeft: 15,
+    alignItems: 'center',
+    alignContent: 'center',
+    justifyContent: 'center',
+    borderColor: 'white',
+    backgroundColor: 'white',
+    shadowColor: '#000000',
+    shadowOpacity: 0.25,
+    shadowRadius: 3.5,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
   },
 
   mainCustomMeetText: {
     shadowColor: '#fff',
     lineHeight: 20,
   },
-  mainNeedConfirmMeetTouch: {
+  mainNeedConfirmMeetTouch: Platform.OS === "android" ? {
     width: screenWidth - 25,
     height: 140,
     borderWidth: 1,
@@ -114,7 +133,24 @@ export default StyleSheet.create({
       height: 5,
     },
     elevation: 5,
+  } : {
+    width: screenWidth - 25,
+    height: 140,
+    borderWidth: 1,
+    borderRadius: 5,
+    paddingTop: 10,
+    marginTop: 10,
+    borderColor: 'white',
+    backgroundColor: 'white',
+    shadowColor: '#000000',
+    shadowOpacity: 0.25,
+    shadowRadius: 3.5,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
   },
+
 
   mainNeedConfirmMeetHead: {
     fontSize: 16,
@@ -163,7 +199,6 @@ export default StyleSheet.create({
     },
     shadowOpacity: 0.37,
     shadowRadius: 7.49,
-
     elevation: 12,
     backgroundColor: '#fff',
   },
@@ -173,7 +208,7 @@ export default StyleSheet.create({
     marginRight: 30,
   },
 
-  mainCalendar: {
+  mainCalendar: Platform.OS === "android" ? {
     borderWidth: 1,
     borderRadius: 5,
     width: 300,
@@ -190,5 +225,21 @@ export default StyleSheet.create({
       height: 5,
     },
     elevation: 5,
+  } : {
+    borderWidth: 1,
+    borderRadius: 5,
+    width: 300,
+    height: 100,
+    marginLeft: 15,
+    justifyContent: 'center',
+    borderColor: 'white',
+    backgroundColor: 'white',
+    shadowColor: '#000000',
+    shadowOpacity: 0.25,
+    shadowRadius: 3.5,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
   },
 });
