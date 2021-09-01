@@ -77,19 +77,19 @@ export default function MainScreen({ navigation }) {
 
 
 
-    const value = AsyncStorage.getItem('@userinfo_email');
+    const [userName , setUserName] = React.useState(null);
+
+    const value = AsyncStorage.getItem('userinfo');
     if (value !== null) {
-        AsyncStorage.getItem('@userinfo_email', (err, result) => {
+        AsyncStorage.getItem('userinfo', (err, result) => {
             const UserInfo = JSON.parse(result);
-            console.log('로그인한 email : ' + UserInfo);
-        });
-        AsyncStorage.getItem('@userinfo_name', (err, result) => {
-            const UserInfo = JSON.parse(result);
-            console.log('로그인한 name : ' + UserInfo);
+            console.log('로그인한 name : ' + UserInfo.name);
+            console.log('로그인한 email : ' + UserInfo.email);
+            setUserName(UserInfo.name);
         });
     }
     else {
-        console.log("로그인안함" + value);
+        console.log("로그인 안됨");
     }
 
 

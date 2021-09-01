@@ -42,6 +42,10 @@ function GoogleLoginScreen({ navigation }) {
         }
     }
 };
+const value = AsyncStorage.getItem('userinfo');
+if (value !== null) {
+  navigation.navigate('MainScreen');
+}
 
   return (
     <>

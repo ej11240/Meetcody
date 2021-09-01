@@ -5,10 +5,13 @@ import { Button, View, Text, SafeAreaView } from 'react-native';
 import   ActionBar  from 'react-native-action-bar';
 import styles from './styles';
 import MainActionBar from './MainActionBar';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Logout({ navigation }) {
   const myContext = useContext(AppContext);
   const androidBool = Platform.OS === 'android' ? true : false;
+  AsyncStorage.clear();
+  navigation.navigate('GoogleLogin');
     return (
       <SafeAreaView style={styles.mainSafeViewArea}>
       {androidBool === true ? (
@@ -17,8 +20,8 @@ export default function Logout({ navigation }) {
         <></>
       )}
       <MainActionBar navigation={navigation} title={'로그아웃'} />
-        <Text>로그아웃</Text>
-        <Button onPress={() => navigation.navigate('Home')} title="Go back home" />
+        {/* <Text>로그아웃</Text> */}
+        {/* <Button onPress={() => navigation.navigate('Home')} title="Go back home" /> */}
       </SafeAreaView>
     );
   }

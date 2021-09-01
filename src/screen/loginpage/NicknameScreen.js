@@ -47,9 +47,7 @@ function NicknameScreen({ navigation }) {
                     
                     try {
                         console.log(value);
-                        AsyncStorage.setItem('@userinfo_name', nickname);
-                        AsyncStorage.setItem('@userinfo_email', JSON.stringify(myContext.userInfo.user.email));
-                        
+                        AsyncStorage.setItem('userinfo', JSON.stringify({'email':myContext.userInfo.user.email, 'name':nickname}));
                     } catch (e) {
                       // saving error
                     }
