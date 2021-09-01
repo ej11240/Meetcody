@@ -15,6 +15,7 @@ import {
 } from '@react-native-google-signin/google-signin';
 import GOOGLE_CONFIG from './google-config';
 import styles from './SignInStyles';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function GoogleLoginScreen({ navigation }) {
   const myContext = useContext(AppContext);
@@ -42,10 +43,8 @@ function GoogleLoginScreen({ navigation }) {
         }
     }
 };
-const value = AsyncStorage.getItem('userinfo');
-if (value !== null) {
-  navigation.navigate('MainScreen');
-}
+
+AsyncStorage.getItem("name").then((result)=>{ if(result!==null){myContext.setIsSignIn(true); navigation.navigate('MainScreen');} });
 
   return (
     <>

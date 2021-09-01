@@ -44,13 +44,30 @@ function NicknameScreen({ navigation }) {
                 alert(JSON.stringify(response.data));
                 console.table(JSON.stringify(response.data));
                 if(JSON.stringify(response.data)!=null){
+
+                    AsyncStorage.setItem("operator", "John").then(
+                        () => AsyncStorage.getItem("operator")
+                              .then((result)=>console.log(result))
+                     )
+                     AsyncStorage.setItem("email", myContext.userInfo.user.email ).then(
+                        () => AsyncStorage.getItem("email")
+                        .then((result)=>console.log(result))
+                     );
+                     AsyncStorage.setItem("name",nickname ).then(
+                        () => AsyncStorage.getItem("name").then((result)=>console.log(result))
+                     );
                     
-                    try {
-                        console.log(value);
-                        AsyncStorage.setItem('userinfo', JSON.stringify({'email':myContext.userInfo.user.email, 'name':nickname}));
-                    } catch (e) {
-                      // saving error
-                    }
+                    // try {
+                    //     console.log(value);
+                    //     // AsyncStorage.setItem('userinfo', JSON.stringify({'email':myContext.userInfo.user.email, 'name':nickname}), () => {
+                    //     //     console.log('유저정보 저장 완료')
+                    //     // });
+                    //     AsyncStorage.setItem("email", myContext.userInfo.user.email );
+                    //     AsyncStorage.setItem("name",nickname );
+                        
+                    // } catch (e) {
+                    //   // saving error
+                    // }
                 }
             })
             .catch(function (error) {

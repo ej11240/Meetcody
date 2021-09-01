@@ -78,22 +78,10 @@ export default function MainScreen({ navigation }) {
 
 
     const [userName , setUserName] = React.useState(null);
+    const [userEmail , setUserEmail] = React.useState(null);
 
-    const value = AsyncStorage.getItem('userinfo');
-    if (value !== null) {
-        AsyncStorage.getItem('userinfo', (err, result) => {
-            const UserInfo = JSON.parse(result);
-            console.log('로그인한 name : ' + UserInfo.name);
-            console.log('로그인한 email : ' + UserInfo.email);
-            setUserName(UserInfo.name);
-        });
-    }
-    else {
-        console.log("로그인 안됨");
-    }
-
-
-    // error reading value
+    AsyncStorage.getItem("name").then((result)=>{ if(result!==null){setUserName(result); console.log(result)} });
+    AsyncStorage.getItem("email").then((result)=>{ if(result!==null){setUserEmail(result)} });
 
 
     return (
