@@ -4,8 +4,7 @@ import {
   ScrollView,
   View,
   StatusBar,
-  TouchableOpacity,
-  Text,
+  TextInput,
 } from 'react-native';
 import AppContext from '../../context/AppContext';
 import SignInHeader from './SignInHeader';
@@ -15,7 +14,31 @@ import Contacts from 'react-native-contacts';
 
 function LoadContactScreen({ navigation }) {
   const myContext = useContext(AppContext);
+  const [inputValue, setInputValue] = useState('');
   
+  const handleChange = (text) => {
+    setInputValue(text);
+    console.log('changed text: ', inputValue);
+  }
+  const handleSubmit = () => {
+    const regex = /010-(\d{3,4})-(\d{4})/;
+    if (inputValue.length === 13 && regex.test(inputValue)) {
+      myContext.setUserInfo({ ...myContext.userInfo, ...{ phoneNumber: inputValue } });
+      navigation.navigate('Nickname');
+    } else {
+      alert('전화번호를 정확히 입력해주세요. 010-1234-5678');
+    }
+  }
+
+  useEffect(() => {
+    if (inputValue.length === 10) {
+      setInputValue(inputValue.replace(/(\d{3})(\d{3,4})(\d{4})/, '$1-$2-$3'));
+    }
+    else if (inputValue.length >= 13) {
+      setInputValue(inputValue.replace(/-/g, '').replace(/(\d{3})(\d{3,4})(\d{4})/, '$1-$2-$3'));
+    }
+  }, [inputValue]);
+
   useEffect(() => {
     if (Platform.OS === "android") {
       PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.READ_CONTACTS, {
@@ -26,22 +49,21 @@ function LoadContactScreen({ navigation }) {
       });
     } else {
       loadContacts();
-    }}, []);
-  
+    }
+  }, []);
+
   const loadContacts = () => {
     Contacts.getAll()
       .then(contacts => {
-        myContext.setUserInfo({...myContext.userInfo, ...{contact: contacts}});
-        navigation.navigate('Nickname');
-        console.log('>>>>>>>>>myCodtext.userInfo:', myContext.userInfo);
+        myContext.setUserInfo({ ...myContext.userInfo, ...{ contact: contacts } });
       })
       .catch(e => {
         alert(e);
       });
-  
+
     Contacts.checkPermission();
   }
-  
+
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -49,9 +71,13 @@ function LoadContactScreen({ navigation }) {
         <ScrollView contentInsetAdjustmentBehavior="automatic">
           <SignInHeader />
           <View style={styles.body}>
-            <TouchableOpacity style={styles.button}>
-              <Text style={styles.buttonText}>연락처 연결하는중...</Text>
-            </TouchableOpacity>
+            <TextInput
+              style={styles.button}
+              placeholder="전화번호를 입력하세요"
+              onChangeText={handleChange}
+              onSubmitEditing={handleSubmit}
+              value={inputValue}
+            />
           </View>
         </ScrollView>
       </SafeAreaView>
