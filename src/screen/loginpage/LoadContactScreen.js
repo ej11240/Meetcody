@@ -11,6 +11,7 @@ import SignInHeader from './SignInHeader';
 import styles from './SignInStyles';
 import { PermissionsAndroid } from 'react-native';
 import Contacts from 'react-native-contacts';
+import { AsyncStorage } from 'react-native';
 
 function LoadContactScreen({ navigation }) {
   const myContext = useContext(AppContext);
@@ -56,6 +57,10 @@ function LoadContactScreen({ navigation }) {
     Contacts.getAll()
       .then(contacts => {
         myContext.setUserInfo({ ...myContext.userInfo, ...{ contact: contacts } });
+        AsyncStorage.setItem("contact", {contacts} ).then(
+          () => AsyncStorage.getItem("contact")
+          .then((result)=>console.log(result))
+       );
       })
       .catch(e => {
         alert(e);

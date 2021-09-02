@@ -7,6 +7,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import InviteAcceptScreen from '../inviteacceptpage/InviteAcceptScreen';
+import Contacts from 'react-native-contacts';
 
 import {
     View,
@@ -77,7 +78,18 @@ export default function MainScreen({ navigation }) {
             bottomBar;
 
     // 페이지가 로딩되는 때에만 한번 실행
+    const [contactList, setContactList] = React.useState([]);
     useEffect(() => {
+        setContactList([]);
+        Contacts.getAll().then(result => {
+            result.map(eachcontact=>{
+                eachcontact.phoneNumbers.map(eachPhone=>{
+                    setContactList(contactList=>[...contactList, eachPhone.number])
+                })
+            });
+            console.log(contactList);
+        });
+    
          if (myContext.isInvitation === true) {
         navigation.navigate(InviteAcceptScreen);
     }

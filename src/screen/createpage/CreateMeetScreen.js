@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   StatusBar,
   StyleSheet,
+  AsyncStorage,
 } from 'react-native';
 import styles from './styles';
 import {TextInput} from 'react-native-paper';
@@ -23,6 +24,7 @@ import {TimePicker} from 'react-native-simple-time-picker';
 import DatePicker from 'react-native-date-ranges';
 import DateRangePicker from './DateRangePicker';
 import {black} from 'react-native-paper/lib/typescript/styles/colors';
+import axios from 'axios';
 
 //import {CalendarList} from 'react-native-common-date-picker';
 // import {Modal} from 'react-native-modals';
@@ -31,6 +33,45 @@ import {black} from 'react-native-paper/lib/typescript/styles/colors';
 // yarn add react-native-simple-time-picker @react-native-picker/picker
 
 export default function CreateMeetScreen({navigation}) {
+
+  const [meetName, setMeetName] = React.useState("");
+  const [emailset, setEmail] = React.useState("");
+  const [meetStartDate, setMeetStartDate] = React.useState("");
+  const [meetEndDate, setMeetEndDate] = React.useState("");
+  const [likeTime, setLikeTime] = React.useState("");
+  const [likePlace, setLikePlace] = React.useState("");
+  const [validity, setValidity] = React.useState("");
+  const [numList, setNumList] = React.useState([]);
+  const [nameList, setNameList] = React.useState([]);
+
+
+  const sendMeetCreation = () => {
+    AsyncStorage.getItem("email").then((result) => { if (result !== null) { setEmail(result); } });
+    AsyncStorage.getItem("selectedFriendsName").then((result) => { if (result !== null) { setNameList( JSON.parse(result)); console.log(result);} });
+    AsyncStorage.getItem("selectedFriendsNum").then((result) => { if (result !== null) { setNumList(numList=JSON.parse(result)); } });
+    console.log( emailset, meetName, meetStartDate,meetEndDate, hours,minutes, likeTime, likePlace, validity);
+    axios
+      .post(`http://localhost:8080/createMeeting/${emailset}`, {
+        meetInfo:[meetName, meetStartDate,meetEndDate, hours,minutes, likeTime, likePlace, validity],
+        friendName: nameList,
+        friendNum: numList
+      }
+        , {
+          headers: {
+            'Content-Type': 'application/json; charset=UTF-8'
+          }
+        }
+      )
+      .then(function (response) {
+        console.log(JSON.stringify(response.data))
+      })
+      .catch(function (error) {
+        console.log(error)
+      });
+
+      // AsyncStorage.removeItem("selectedFriendBoolList"); AsyncStorage.removeItem("selectedPressed"); 
+  }
+
   const androidBool = Platform.OS === 'android' ? true : false;
   const placeholder = '값을 입력해주세요.';
   const [inputs, setInputs] = useState({
@@ -45,6 +86,7 @@ export default function CreateMeetScreen({navigation}) {
 
   const onChangeText = value => {
     setInputs(value);
+    setMeetName(value);
   };
 
   const [hours, setHours] = React.useState(0);
@@ -72,7 +114,7 @@ export default function CreateMeetScreen({navigation}) {
             mode="outlined"
             label="약속 이름"
             value={name}
-            onChangeText={onChangeText}
+            onChangeText={text=>{onChangeText(text); setMeetName(text); }}
           />
         </View>
         <View>
@@ -81,7 +123,7 @@ export default function CreateMeetScreen({navigation}) {
             <DateRangePicker
               style={{width: 330}}
               initialRange={['2021-08-01', '2021-08-05']}
-              onSuccess={(s, e) => alert(s + ' ~ ' + e)}
+              onSuccess={(s, e) => {alert(s + ' ~ ' + e); setMeetStartDate(s); setMeetEndDate(e)}}
               theme={{markColor: '#6799FF', markTextColor: 'white'}}
             />
           </View>
@@ -106,7 +148,7 @@ export default function CreateMeetScreen({navigation}) {
               }}
               fixAndroidTouchableBug={true}
               value={like}
-              onValueChange={value => onChangeText(value)}
+              onValueChange={value => {onChangeText(value); setLikeTime(value); }}
               useNativeAndroidPickerStyle={false}
               items={[
                 {label: '새벽', value: '7', key: '7'},
@@ -130,7 +172,7 @@ export default function CreateMeetScreen({navigation}) {
               }}
               fixAndroidTouchableBug={true}
               value={place}
-              onValueChange={value => onChangeText(value)}
+              onValueChange={value => {onChangeText(value); setLikePlace(value);}}
               useNativeAndroidPickerStyle={false}
               items={[
                 {label: '장소가 없는 모임이에요', value: '1', key: '1'},
@@ -153,7 +195,7 @@ export default function CreateMeetScreen({navigation}) {
               }}
               fixAndroidTouchableBug={true}
               value={term}
-              onValueChange={value => onChangeText(value)}
+              onValueChange={value => {onChangeText(value); setValidity(value); }}
               useNativeAndroidPickerStyle={false}
               items={[
                 {label: '3시간', value: '4', key: '4'},
@@ -187,7 +229,7 @@ export default function CreateMeetScreen({navigation}) {
         <TouchableOpacity
           activeOpacity={1}
           style={styles.button}
-          onPress={() => Alert.alert('약속이 생성되었습니다.')}>
+          onPress={() => {Alert.alert('약속이 생성되었습니다.'); sendMeetCreation();}}>
           <Text>저장</Text>
         </TouchableOpacity>
       </View>

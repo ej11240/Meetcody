@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useContext } from 'react';
-import AppContext from '../../context/AppContext';
+import AppContext from '../context/AppContext';
 import { View, Text, Alert, Image, Dimensions, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ActionBar from 'react-native-action-bar';

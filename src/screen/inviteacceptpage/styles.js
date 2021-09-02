@@ -1,5 +1,6 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet,Dimensions, } from 'react-native';
 
+const screenWidth = Dimensions.get('window').width;
 export default StyleSheet.create({
     container: {
         flex: 1,
@@ -89,4 +90,7 @@ export default StyleSheet.create({
         width: 250,
         fontSize: 15,
     },
+    friendlistWidth:{
+        width:screenWidth
+    }
 });

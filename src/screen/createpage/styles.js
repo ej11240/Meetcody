@@ -95,4 +95,10 @@ export default StyleSheet.create({
     marginRight: 20,
     marginBottom: 10,
   },
+  friendListbackgroundNone:{
+
+  },
+  friendListbackgroundGreen:{
+    backgroundColor:'#FF9800'
+  }
 });

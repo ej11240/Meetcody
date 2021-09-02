@@ -44,7 +44,7 @@ function GoogleLoginScreen({ navigation }) {
     }
 };
 
-AsyncStorage.getItem("name").then((result)=>{ if(result!==null){myContext.setIsSignIn(true); navigation.navigate('MainScreen');} });
+AsyncStorage.getItem("name").then((result)=>{ if(result!==null){myContext.setIsSignIn(true); } });
 
   return (
     <>

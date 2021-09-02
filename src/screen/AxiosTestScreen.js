@@ -7,7 +7,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import axios from 'axios';
-import AppContext from '../../context/AppContext';
+import AppContext from '../context/AppContext';
 
 const AxiosTestScreen = ({ navigation }) => {
   const myContext = useContext(AppContext);
