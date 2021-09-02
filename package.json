@@ -12,7 +12,6 @@
   },
   "dependencies": {
     "@actbase/react-daum-postcode": "^1.0.0",
-    "@react-native-async-storage/async-storage": "^1.15.7",
     "@react-native-community/datetimepicker": "3.5.2",
     "@react-native-community/masked-view": "^0.1.11",
     "@react-native-google-signin/google-signin": "^6.0.1",

@@ -39,7 +39,7 @@ export default function MainActionBar(props) {
             </TouchableOpacity>
             :
 
-            <TouchableOpacity style={{height: 50,}} onPress={() => navigation.openDrawer()}>
+            <TouchableOpacity style={{height: 50,}} onPress={() => {props.navigation.openDrawer();}}>
                 <Ionicons name="menu-sharp" size={30} style={{paddingTop: 10, paddingLeft: 30}}/>
             </TouchableOpacity>;
 

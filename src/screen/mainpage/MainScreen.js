@@ -6,7 +6,6 @@ import { getStatusBarHeight } from 'react-native-status-bar-height';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import InviteAcceptScreen from '../inviteacceptpage/InviteAcceptScreen';
 
 import {
@@ -21,6 +20,7 @@ import {
     StatusBar,
     Platform,
     StyleSheet,
+    AsyncStorage
 } from 'react-native';
 import axios from 'axios';
 import styles from './styles';

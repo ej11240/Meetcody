@@ -6,6 +6,7 @@ import {
   StatusBar,
   TouchableOpacity,
   Text,
+  AsyncStorage,
 } from 'react-native';
 import AppContext from '../../context/AppContext';
 import SignInHeader from './SignInHeader';
@@ -15,7 +16,6 @@ import {
 } from '@react-native-google-signin/google-signin';
 import GOOGLE_CONFIG from './google-config';
 import styles from './SignInStyles';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function GoogleLoginScreen({ navigation }) {
   const myContext = useContext(AppContext);

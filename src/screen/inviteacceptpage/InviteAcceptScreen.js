@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useContext } from 'react';
 import AppContext from '../../context/AppContext';
-import { Button, View, Text, SafeAreaView, Image, TouchableOpacity, } from 'react-native';
+import { Button, View, Text, SafeAreaView, Image, TouchableOpacity, AsyncStorage } from 'react-native';
 import ActionBar from 'react-native-action-bar';
 import styles from './styles';
 import MainActionBar from '../mainpage/MainActionBar';
@@ -9,7 +9,6 @@ import Postcode from '@actbase/react-daum-postcode';
 import { useState, useEffect } from 'react';
 import { WebView } from 'react-native-webview';
 import axios from 'axios';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import MainScreen from '../mainpage/MainScreen';
 
 

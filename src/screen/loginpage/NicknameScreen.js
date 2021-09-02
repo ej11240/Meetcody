@@ -7,12 +7,12 @@ import {
     TextInput,
     TouchableOpacity,
     Text,
+    AsyncStorage
 } from 'react-native';
 import axios from 'axios';
 import AppContext from '../../context/AppContext';
 import SignInHeader from './SignInHeader';
 import styles from './SignInStyles';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 function NicknameScreen({ navigation }) {

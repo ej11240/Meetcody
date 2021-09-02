@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { useContext } from 'react';
 import AppContext from '../../context/AppContext';
-import { Button, View, Text, SafeAreaView } from 'react-native';
+import { Button, View, Text, SafeAreaView, AsyncStorage, } from 'react-native';
 import   ActionBar  from 'react-native-action-bar';
 import styles from './styles';
 import MainActionBar from './MainActionBar';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Logout({ navigation }) {
   const myContext = useContext(AppContext);

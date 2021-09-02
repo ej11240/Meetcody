@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from 'react-native';
+
 
 const storageisEmpty = function (value) {
   if (value === '' || value === null || value === undefined || (value !== null && typeof value === 'object' && !Object.keys(value).length)) {
