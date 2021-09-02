@@ -24,17 +24,14 @@ export default function App() {
   const [isLoading, setIsLoading] = useState();
   const [userInfo, setUserInfo] = useState(false);
   const [isSignIn, setIsSignIn] = useState(false);
-  const [isInvitation, setIsInvitation] = useState(false);
 
   const userSettings = {
     isLoading: isLoading,
     userInfo: userInfo,
     isSignIn: isSignIn,
-    isInvitation: isInvitation,
     setIsLoading,
     setUserInfo,
     setIsSignIn,
-    setIsInvitation,
   };
 
   if (isLoading) {

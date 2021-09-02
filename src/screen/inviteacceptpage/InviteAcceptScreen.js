@@ -1,16 +1,17 @@
 import * as React from 'react';
 import { useContext } from 'react';
 import AppContext from '../../context/AppContext';
-import { Button, View, Text, SafeAreaView, Image, TouchableOpacity, AsyncStorage } from 'react-native';
-import ActionBar from 'react-native-action-bar';
+import { View, Text, Image, TouchableOpacity} from 'react-native';
 import styles from './styles';
-import MainActionBar from '../mainpage/MainActionBar';
 import Postcode from '@actbase/react-daum-postcode';
-import { useState, useEffect } from 'react';
-import { WebView } from 'react-native-webview';
+import { useState } from 'react';
 import axios from 'axios';
-import MainScreen from '../mainpage/MainScreen';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
+// TODO("리덕스로 상태관리")
+// TODO("네비게이션 구조 전체적으로 다시 봐야함...")
+// TODO("변수명 ㅠ myContext 이렇게 파스칼케이스로 적어주세요 꼭...요청..")
+// TODO("이렇게 하는 이유: 초대 화면에서 로그인으로 넘어가는 등 복잡한 로직을 구현하려니까 모듈 트리가 서로 꼬여서 에러가 남")
 
 export default function InviteAcceptScreen({ navigation }) {
     const myContext = useContext(AppContext);
@@ -18,11 +19,11 @@ export default function InviteAcceptScreen({ navigation }) {
     AsyncStorage.getItem("email")
         .then((result)=>{ 
             if(result!==null){
+                // TODO("로그인 여부에 따른 초대장 화면 표시 순서 구현")
                 // 서버에 회원 정보 전송
                 // if 회원 -> 수락화면
             } else {
                 // 회원 아님 -> 구글 로그인, 휴대폰 번호 입력
-                myContext.setinvitation(true);
                 myContext.setIsSignIn(false);
             }
         });
@@ -144,7 +145,7 @@ export default function InviteAcceptScreen({ navigation }) {
                                     <TouchableOpacity style={styles.button2} onPress={() => { setModal(true); }} >
                                         <Text style={styles.buttonTextNoBox}>출발 장소 다시 입력</Text>
                                     </TouchableOpacity>
-                                    <TouchableOpacity style={styles.button} onPress={() => { myContext.setIsInvitation(false); sendStartLoctoServer(); }} >
+                                    <TouchableOpacity style={styles.button} onPress={() => { sendStartLoctoServer(); }} >
                                         <Text style={styles.buttonText}>초대 수락하기</Text>
                                     </TouchableOpacity>
                                 </View>
@@ -156,10 +157,10 @@ export default function InviteAcceptScreen({ navigation }) {
                                         <Text style={styles.buttonText}>어디에서 출발하시나요?</Text>
                                     </TouchableOpacity>
 
-                                    <TouchableOpacity style={styles.button2} onPress={() => { myContext.setIsInvitation(false); navigation.navigate(MainScreen);}} >
+                                    <TouchableOpacity style={styles.button2} onPress={() => { navigation.goBack();}} >
                                         <Text style={styles.buttonTextNoBox}>상관없어요!</Text>
                                     </TouchableOpacity>
-                                    <TouchableOpacity style={styles.button2} onPress={() => { myContext.setIsInvitation(false); test();}} >
+                                    <TouchableOpacity style={styles.button2} onPress={() => { test();}} >
                                         <Text style={styles.buttonTextNoBox}>상관없어요!</Text>
                                     </TouchableOpacity>
                                 </View>

@@ -1,33 +1,25 @@
 import * as React from 'react';
 import { useContext, useEffect } from 'react';
 import AppContext from '../../context/AppContext';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import Entypo from 'react-native-vector-icons/Entypo';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import InviteAcceptScreen from '../inviteacceptpage/InviteAcceptScreen';
 import Contacts from 'react-native-contacts';
 
 import {
     View,
     Text,
-    Alert,
     Image,
     Dimensions,
     TouchableOpacity,
-    ScrollView,
     SafeAreaView,
     StatusBar,
     Platform,
-    StyleSheet,
-    AsyncStorage
 } from 'react-native';
-import axios from 'axios';
 import styles from './styles';
 import MainTab1 from './MainTab1';
 import MainTab2 from './MainTab2';
 import MainActionBar from './MainActionBar';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function MainScreen({ navigation }) {
     const myContext = useContext(AppContext);
@@ -89,10 +81,7 @@ export default function MainScreen({ navigation }) {
             });
             console.log(contactList);
         });
-    
-         if (myContext.isInvitation === true) {
-        navigation.navigate(InviteAcceptScreen);
-    }
+        // TODO("초대받았으나 응답하지 않은 초대장이 있을 경우, 안녕하세요 ㅇㅇㅇ님 ~년~월~일 ~요일입니다 위치에 같은 스타일로 알림 표시")
     }, []);
    
 
