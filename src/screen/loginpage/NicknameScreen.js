@@ -5,12 +5,12 @@ import {
     View,
     StatusBar,
     TextInput,
+    AsyncStorage
 } from 'react-native';
 import axios from 'axios';
 import AppContext from '../../context/AppContext';
 import SignInHeader from './SignInHeader';
 import styles from './SignInStyles';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 function NicknameScreen({ navigation }) {
@@ -43,13 +43,16 @@ function NicknameScreen({ navigation }) {
                 console.table(JSON.stringify(response.data));
                 if(JSON.stringify(response.data)!=null){
 
-                    AsyncStorage.setItem("operator", "John").then(
-                        () => AsyncStorage.getItem("operator")
-                              .then((result)=>console.log(result))
-                     )
+                    // AsyncStorage.setItem("operator", "John").then(
+                    //     () => AsyncStorage.getItem("operator")
+                    //           .then((result)=>console.log(result))
+                    //  )
                      AsyncStorage.setItem("email", myContext.userInfo.user.email ).then(
                         () => AsyncStorage.getItem("email")
                         .then((result)=>console.log(result))
+                     );
+                     AsyncStorage.setItem("userid",JSON.stringify(response.data) ).then(
+                        () => AsyncStorage.getItem("userid").then((result)=>console.log(result))
                      );
                      AsyncStorage.setItem("name",nickname ).then(
                         () => AsyncStorage.getItem("name").then((result)=>console.log(result))

@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import * as React from 'react';
+import React, { useContext, useState } from 'react';
 import {
   View,
   Text,
@@ -16,6 +16,7 @@ import styles from './styles';
 import MainActionBar from '../mainpage/MainActionBar';
 import { ListItem, Avatar } from 'react-native-elements';
 import Contacts from 'react-native-contacts';
+import AppContext from '../../context/AppContext';
 
 function useForceUpdate(){
   const [value, setValue] = React.useState(0); // integer state
@@ -31,8 +32,8 @@ export default function InviteFriendScreen( { navigation}) {
   const [isPress, setIsPress] = React.useState([]);
   const [selectedFriend, setSelectedFriend] = React.useState([]);
   const [extractedFriend, setExtractedFriend] = React.useState([]);
-  const [numList, setNumList] = React.useState([]);
-  const [nameList, setNameList] = React.useState([]);
+  const myContext = useContext(AppContext);
+
 
   const forceUpdate = useForceUpdate();
   
@@ -59,7 +60,6 @@ export default function InviteFriendScreen( { navigation}) {
         }
       }
       else {
-        // setIsPress([]);
       }
     });
   
@@ -152,21 +152,22 @@ export default function InviteFriendScreen( { navigation}) {
       .then((result)=>console.log(result))
     );
 
-    
+    var names=[];
+    var nums=[];
     isPress.map((isSelected,index)=>{
       if(isSelected){
-        console.log("asdf",index,contactList[index], numList);
-        setNameList( nameList=>[...nameList, contactNAMEList[index]]);
-        setNumList( numList=>[...numList, contactList[index]]);
+        names.push(contactNAMEList[index]);
+        nums.push(contactList[index]);
       }
     });
 
+    console.log("asdf", names, nums);
     AsyncStorage.removeItem("selectedFriendsName"); AsyncStorage.removeItem("selectedFriendsNum");
-    AsyncStorage.setItem("selectedFriendsName", JSON.stringify(nameList) ).then(
+    AsyncStorage.setItem("selectedFriendsName", JSON.stringify(names) ).then(
       () => AsyncStorage.getItem("selectedFriendsName")
       .then((result)=>console.log(result))
     );
-    AsyncStorage.setItem("selectedFriendsNum", JSON.stringify(numList) ).then(
+    AsyncStorage.setItem("selectedFriendsNum", JSON.stringify(nums) ).then(
       () => AsyncStorage.getItem("selectedFriendsNum")
       .then((result)=>console.log(result))
     );

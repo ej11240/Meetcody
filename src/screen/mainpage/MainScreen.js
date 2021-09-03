@@ -25,6 +25,7 @@ export default function MainScreen({ navigation }) {
     const myContext = useContext(AppContext);
     const [showmessage1, setShowmessage1] = React.useState(true);
     const [currentTab, setCurrentTab] = React.useState(1);
+    const [emailset, setEmail] = React.useState("");
 
     const showmessageFunc1 = () => {
         setShowmessage1(!showmessage1);
@@ -85,11 +86,9 @@ export default function MainScreen({ navigation }) {
     }, []);
    
 
-    const [userName , setUserName] = React.useState(null);
-    const [userEmail , setUserEmail] = React.useState(null);
 
-    AsyncStorage.getItem("name").then((result)=>{ if(result!==null){setUserName(result); console.log(result)} });
-    AsyncStorage.getItem("email").then((result)=>{ if(result!==null){setUserEmail(result)} });
+    AsyncStorage.getItem("name").then((result) => { if(result!==null){setUserName(result);} });
+    AsyncStorage.getItem("email").then((result) => { if (result !== null) { setEmail(result);  console.log("main 이메일출력: "+result); } });
 
 
     return (

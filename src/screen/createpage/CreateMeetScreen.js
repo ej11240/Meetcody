@@ -43,18 +43,38 @@ export default function CreateMeetScreen({navigation}) {
   const [validity, setValidity] = React.useState("");
   const [numList, setNumList] = React.useState([]);
   const [nameList, setNameList] = React.useState([]);
-
+  const [userid, setUserid] = React.useState("");
 
   const sendMeetCreation = () => {
     AsyncStorage.getItem("email").then((result) => { if (result !== null) { setEmail(result); } });
     AsyncStorage.getItem("selectedFriendsName").then((result) => { if (result !== null) { setNameList( JSON.parse(result)); console.log(result);} });
-    AsyncStorage.getItem("selectedFriendsNum").then((result) => { if (result !== null) { setNumList(numList=JSON.parse(result)); } });
-    console.log( emailset, meetName, meetStartDate,meetEndDate, hours,minutes, likeTime, likePlace, validity);
+    AsyncStorage.getItem("selectedFriendsNum").then((result) => { if (result !== null) { setNumList(JSON.parse(result)); } });
+    AsyncStorage.getItem("userid").then((result) => { if (result !== null) { setUserid(JSON.parse(result)); } });
+    console.log( numList, nameList, emailset, meetName, meetStartDate,meetEndDate, hours,minutes, likeTime, likePlace, validity);
+    // console.log("~~~~~~~~~");
+    axios.post(`http://localhost:8080/testingin`,{
+      meetInfo:[meetName, meetStartDate,meetEndDate, hours,minutes, likeTime, likePlace, validity],
+      friendName: nameList,
+      friendNum: numList,
+
+    }
+      , {
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8'
+        }
+      }).then(function (response) {
+      console.log(JSON.stringify(response.data));
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
     axios
-      .post(`http://localhost:8080/createMeeting/${emailset}`, {
+      .post(`http://localhost:8080/createMeeting`, {
         meetInfo:[meetName, meetStartDate,meetEndDate, hours,minutes, likeTime, likePlace, validity],
         friendName: nameList,
-        friendNum: numList
+        friendNum: numList,
+        email: [emailset],
+        userid:[userid]
       }
         , {
           headers: {
@@ -63,10 +83,10 @@ export default function CreateMeetScreen({navigation}) {
         }
       )
       .then(function (response) {
-        console.log(JSON.stringify(response.data))
+        console.log(JSON.stringify(response.data));
       })
       .catch(function (error) {
-        console.log(error)
+        console.log(error);
       });
 
       // AsyncStorage.removeItem("selectedFriendBoolList"); AsyncStorage.removeItem("selectedPressed"); 
@@ -86,7 +106,7 @@ export default function CreateMeetScreen({navigation}) {
 
   const onChangeText = value => {
     setInputs(value);
-    setMeetName(value);
+    // setMeetName(value);
   };
 
   const [hours, setHours] = React.useState(0);
@@ -113,8 +133,8 @@ export default function CreateMeetScreen({navigation}) {
             style={{fontSize: 18, flex: 1}}
             mode="outlined"
             label="약속 이름"
-            value={name}
-            onChangeText={text=>{onChangeText(text); setMeetName(text); }}
+            value={meetName}
+            onChangeText={text=>{setMeetName(text); }}
           />
         </View>
         <View>
@@ -198,9 +218,14 @@ export default function CreateMeetScreen({navigation}) {
               onValueChange={value => {onChangeText(value); setValidity(value); }}
               useNativeAndroidPickerStyle={false}
               items={[
-                {label: '3시간', value: '4', key: '4'},
-                {label: '1일(24시간)', value: '5', key: '5'},
-                {label: '수락 마감 하루 전', value: '6', key: '6'},
+                {label: '1시간', value: '11', key: '4'},
+                {label: '2시간', value: '12', key: '4'},
+                {label: '3시간', value: '13', key: '4'},
+                {label: '6시간', value: '14', key: '4'},
+                {label: '12시간', value: '15', key: '4'},
+                {label: '1일(24시간)', value: '16', key: '5'},
+                {label: '2일(48시간)', value: '17', key: '5'},
+                {label: '수락 마감 하루 전', value: '18', key: '6'},
               ]}
               style={pickerSelectStyles}
             />

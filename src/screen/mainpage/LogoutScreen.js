@@ -9,8 +9,11 @@ import MainActionBar from './MainActionBar';
 export default function Logout({ navigation }) {
   const myContext = useContext(AppContext);
   const androidBool = Platform.OS === 'android' ? true : false;
-  AsyncStorage.clear();
-  navigation.navigate('GoogleLogin');
+  React.useEffect(()=>{
+    AsyncStorage.removeItem('name');
+    navigation.navigate('GoogleLogin');
+  },[]);
+  
     return (
       <SafeAreaView style={styles.mainSafeViewArea}>
       {androidBool === true ? (
