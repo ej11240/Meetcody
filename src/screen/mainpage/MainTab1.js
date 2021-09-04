@@ -20,6 +20,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {DrawerActions} from '@react-navigation/native';
 import Entypo from 'react-native-vector-icons/Entypo';
 import { NetworkInfo } from "react-native-network-info";
+import DeviceInfo from 'react-native-device-info';
 
 export default function MainTab1(props) {
   const [userid, setUserid] = React.useState("");
@@ -39,8 +40,19 @@ export default function MainTab1(props) {
       // alert(ipv4Address);
     });
 
+    let apiaddress ="";
+    if (DeviceInfo.isEmulator()){
+      apiaddress="http://localhost:8080/meetlist";
+      console.log("~~~~~~~",apiaddress);
+    }
+    else{
+      apiaddress="http://192.168.12.94"+":8080/meetlist";
+      console.log("~~~~~~~",apiaddress);
+    }
+
+
     axios
-      .post(`http://${ip4}:8080/meetlist`, {
+      .post(apiaddress, {
         userid:[userid]
       }
         , {

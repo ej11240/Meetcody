@@ -12,6 +12,8 @@ import {
 } from 'react-native';
 import styles from '../createpage/styles';
 import MainActionBar from '../mainpage/MainActionBar';
+import DeviceInfo from 'react-native-device-info';
+
 
 export default function DetailScreen({navigation}) {
   const androidBool = Platform.OS === 'android' ? true : false;

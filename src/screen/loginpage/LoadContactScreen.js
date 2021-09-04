@@ -5,6 +5,8 @@ import {
   View,
   StatusBar,
   TextInput,
+  KeyboardAvoidingView,
+  StyleSheet,
 } from 'react-native';
 import AppContext from '../../context/AppContext';
 import SignInHeader from './SignInHeader';
@@ -12,6 +14,10 @@ import styles from './SignInStyles';
 import { PermissionsAndroid } from 'react-native';
 import Contacts from 'react-native-contacts';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import DeviceInfo from 'react-native-device-info';
+import axios from 'axios';
+import { NetworkInfo } from "react-native-network-info";
+
 
 function LoadContactScreen({ navigation }) {
   const myContext = useContext(AppContext);
@@ -32,6 +38,51 @@ function LoadContactScreen({ navigation }) {
   }
 
   useEffect(() => {
+
+    let ip4 = "";
+    NetworkInfo.getIPV4Address().then(ipv4Address => {
+      ip4 = ipv4Address;
+    });
+
+    let apiaddress = "";
+    if (DeviceInfo.isEmulator()) {
+      apiaddress = "http://localhost:8080/v1/user/checkemail";
+      console.log("~~~~~~~", apiaddress);
+    }
+    else {
+      apiaddress = "http://" + "192.168.12.94" + ":8080/v1/user/checkemail";
+      console.log("~~~~~~~", apiaddress);
+    }
+
+    axios
+      .post(apiaddress, {
+        email: [myContext.userInfo.user.email],
+      })
+      .then(function (response) {
+        console.log("이메일 체크",response.data.email);
+        if (response.data.id) {
+
+          AsyncStorage.setItem("email", response.data.email).then(
+            () => AsyncStorage.getItem("email")
+              .then((result) => console.log(result))
+          );
+          AsyncStorage.setItem("userid", JSON.stringify(response.data.id)).then(
+            () => AsyncStorage.getItem("userid").then((result) => { console.log("유저아이디:", result); })
+          );
+          AsyncStorage.setItem("name", JSON.stringify(response.data.nickname)).then(
+            () => AsyncStorage.getItem("name").then((result) => console.log(result))
+          );
+          myContext.setIsSignIn(true);
+        }
+        else {
+
+        }
+      })
+      .catch(function (error) {
+        // handle error
+        alert(error.message);
+      });
+
     if (inputValue.length === 10) {
       setInputValue(inputValue.replace(/(\d{3})(\d{3,4})(\d{4})/, '$1-$2-$3'));
     }
@@ -71,6 +122,10 @@ function LoadContactScreen({ navigation }) {
 
   return (
     <>
+    <KeyboardAvoidingView
+            style={styles.rootContainer}
+            behavior={"padding"}
+        >   
       <StatusBar barStyle="dark-content" />
       <SafeAreaView style={styles.container}>
         <ScrollView contentInsetAdjustmentBehavior="automatic">
@@ -86,8 +141,10 @@ function LoadContactScreen({ navigation }) {
           </View>
         </ScrollView>
       </SafeAreaView>
+      </KeyboardAvoidingView>
     </>
   );
 }
+
 
 export default LoadContactScreen;

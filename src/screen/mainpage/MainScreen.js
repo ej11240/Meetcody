@@ -21,6 +21,8 @@ import MainTab2 from './MainTab2';
 import MainActionBar from './MainActionBar';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NetworkInfo } from "react-native-network-info";
+import DeviceInfo from 'react-native-device-info';
+
 
 export default function MainScreen({ navigation }) {
     const myContext = useContext(AppContext);
@@ -29,9 +31,19 @@ export default function MainScreen({ navigation }) {
     const [emailset, setEmail] = React.useState("");
 
     let ip4="";
-        NetworkInfo.getIPV4Address().then(ipv4Address => {
-            ip4=ipv4Address;
-        });
+    NetworkInfo.getIPV4Address().then(ipv4Address => {
+        ip4=ipv4Address;
+    });
+
+    let apiaddress ="";
+    if (DeviceInfo.isEmulator()){
+      apiaddress="http://"+"localhost"+":8080/createMeeting";
+    }
+    else{
+      apiaddress="http://"+"192.168.12.94"+":8080/createMeeting";
+    }
+
+
 
     const showmessageFunc1 = () => {
         setShowmessage1(!showmessage1);

@@ -114,22 +114,6 @@ export default class DateRangePicker extends Component<Props> {
   render() {
     return (
       <View>
-        <Text
-          style={{
-            margin: 1,
-            marginTop: 5,
-            fontSize: 17,
-            height: 50,
-            width: 325,
-            color: '#000000',
-            padding: 10,
-            borderColor: '#8C8C8C',
-            borderWidth: 1,
-            borderRadius: 5,
-            backgroundColor: '#F6F6F6',
-          }}>
-          {this.state.fromDate} ~
-        </Text>
         <Calendar
           {...this.props}
           markingType={'period'}

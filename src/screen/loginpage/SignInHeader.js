@@ -5,6 +5,8 @@ import {
     Text,
 } from 'react-native';
 import styles from './SignInStyles';
+import DeviceInfo from 'react-native-device-info';
+
 
 const SignInHeader = () => {
     return (

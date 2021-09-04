@@ -16,6 +16,8 @@ import {
 import GOOGLE_CONFIG from './google-config';
 import styles from './SignInStyles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import DeviceInfo from 'react-native-device-info';
+
 
 function GoogleLoginScreen({ navigation }) {
   const myContext = useContext(AppContext);

@@ -5,6 +5,8 @@ import { Button, View, Text, SafeAreaView, AsyncStorage, } from 'react-native';
 import   ActionBar  from 'react-native-action-bar';
 import styles from './styles';
 import MainActionBar from './MainActionBar';
+import DeviceInfo from 'react-native-device-info';
+
 
 export default function Logout({ navigation }) {
   const myContext = useContext(AppContext);

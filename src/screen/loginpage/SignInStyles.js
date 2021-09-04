@@ -52,5 +52,29 @@ export default StyleSheet.create({
         marginLeft: 10,
         fontSize: 15,
         color: "gray"
+    },
+    rootContainer: {
+        flex: 1,
+        backgroundColor: "#ffffff"
+    },
+    commentArea: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#ababab"
+    },
+    textInputContainer: {
+        marginTop: "auto",
+        borderWidth: 1,
+        borderColor: "skyblue",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: 15,
+    },
+    textInput: {
+        width: "100%",
+        fontSize: 18,
+        borderWidth: 1,
+        borderColor: "pink"
     }
 });

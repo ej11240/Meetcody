@@ -12,6 +12,8 @@ import AppContext from '../../context/AppContext';
 import SignInHeader from './SignInHeader';
 import styles from './SignInStyles';
 import { NetworkInfo } from "react-native-network-info";
+import DeviceInfo from 'react-native-device-info';
+
 
 function NicknameScreen({ navigation }) {
     const myContext = useContext(AppContext);
@@ -28,12 +30,22 @@ function NicknameScreen({ navigation }) {
     };
 
     const postUserData = () => {
-        let ip4="";
+        let ip4 = "";
         NetworkInfo.getIPV4Address().then(ipv4Address => {
-            ip4=ipv4Address;
+            ip4 = ipv4Address;
         });
+
+        let apiaddress = "";
+        if (DeviceInfo.isEmulator()) {
+            apiaddress = "http://" + "localhost" + ":8080/v1/user/signup";
+        }
+        else {
+            apiaddress = "http://" + "192.168.12.94" + ":8080/v1/user/signup";
+            console.log("~~~~~~~",apiaddress);
+        }
+
         axios
-            .post(`http://${ip4}:8080/signup`, {
+            .post(apiaddress, {
                 familyName: myContext.userInfo.user.familyName,
                 givenName: myContext.userInfo.user.givenName,
                 email: myContext.userInfo.user.email,
@@ -45,23 +57,23 @@ function NicknameScreen({ navigation }) {
                 // handle success
                 alert(JSON.stringify(response.data));
                 console.table(JSON.stringify(response.data));
-                if(JSON.stringify(response.data)!=null){
+                if (JSON.stringify(response.data) != null) {
 
                     // AsyncStorage.setItem("operator", "John").then(
                     //     () => AsyncStorage.getItem("operator")
                     //           .then((result)=>console.log(result))
                     //  )
-                     AsyncStorage.setItem("email", myContext.userInfo.user.email ).then(
+                    AsyncStorage.setItem("email", myContext.userInfo.user.email).then(
                         () => AsyncStorage.getItem("email")
-                        .then((result)=>console.log(result))
-                     );
-                     AsyncStorage.setItem("userid",JSON.stringify(response.data) ).then(
-                        () => AsyncStorage.getItem("userid").then((result)=>{console.log("유저아이디:",result);})
-                     );
-                     AsyncStorage.setItem("name",nickname ).then(
-                        () => AsyncStorage.getItem("name").then((result)=>console.log(result))
-                     );
-                    
+                            .then((result) => console.log(result))
+                    );
+                    AsyncStorage.setItem("userid", JSON.stringify(response.data)).then(
+                        () => AsyncStorage.getItem("userid").then((result) => { console.log("유저아이디:", result); })
+                    );
+                    AsyncStorage.setItem("name", nickname).then(
+                        () => AsyncStorage.getItem("name").then((result) => console.log(result))
+                    );
+
                     // try {
                     //     console.log(value);
                     //     // AsyncStorage.setItem('userinfo', JSON.stringify({'email':myContext.userInfo.user.email, 'name':nickname}), () => {
@@ -69,7 +81,7 @@ function NicknameScreen({ navigation }) {
                     //     // });
                     //     AsyncStorage.setItem("email", myContext.userInfo.user.email );
                     //     AsyncStorage.setItem("name",nickname );
-                        
+
                     // } catch (e) {
                     //   // saving error
                     // }

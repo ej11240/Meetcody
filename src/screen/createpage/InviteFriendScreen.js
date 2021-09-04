@@ -18,6 +18,8 @@ import { ListItem, Avatar } from 'react-native-elements';
 import Contacts from 'react-native-contacts';
 import AppContext from '../../context/AppContext';
 import { NetworkInfo } from "react-native-network-info";
+import DeviceInfo from 'react-native-device-info';
+
 
 function useForceUpdate(){
   const [value, setValue] = React.useState(0); // integer state
@@ -28,7 +30,7 @@ export default function InviteFriendScreen( { navigation}) {
   const androidBool = Platform.OS === 'android' ? true : false;
   const [contactList, setContactList] = React.useState([]);
   const [contactNAMEList, setContactNAMEList] = React.useState([]);
-  const [emailset, setEmail] = React.useState("");
+  const [emailSet, setEmail] = React.useState("");
   const [DATA, setDATA] = React.useState([]);
   const [isPress, setIsPress] = React.useState([]);
   const [selectedFriend, setSelectedFriend] = React.useState([]);
@@ -93,11 +95,21 @@ export default function InviteFriendScreen( { navigation}) {
     console.log(contactList);
     console.log(contactNAMEList);
 
-    
     AsyncStorage.getItem("email").then((result) => { if (result !== null) { setEmail(result); } });
-    console.log("here!" + emailset);
+    console.log("here!" + emailSet);
+
+    let apiaddress ="";
+    if (DeviceInfo.isEmulator()){
+      apiaddress="http://"+"localhost"+":8080/v1/friend/contacts/"+emailSet;
+    }
+    else{
+      apiaddress="http://"+"192.168.12.94"+":8080/v1/friend/contacts/"+emailSet;
+    }
+
+    
+    
     // axios
-    //       .post(`http://${ip4}:8080/user_contacts/${emailset}`, {
+    //       .post(apiaddress, {
     //         list: contactList,
     //       }
     //       , {
@@ -218,7 +230,7 @@ export default function InviteFriendScreen( { navigation}) {
       <MainActionBar navigation={navigation} title={'CreateMeetScreen'} />
 
       <ScrollView style={styles.contents}>
-        <Text style={{ paddingTop: 20 }}>친구 초대</Text>
+        <Text style={styles.friendHeadText}>약속에 함께할 친구를 선택해주세요.</Text>
         {DATA.map((item, index) => {
           return (
             <ListItem bottomDivider onPress={() => { selectFriend(index); }} >
@@ -234,12 +246,12 @@ export default function InviteFriendScreen( { navigation}) {
       </ScrollView>
       <View style={styles.fixToText}>
         <TouchableOpacity
-          style={styles.button}
+          style={styles.bottomButton}
           onPress={() => {navigation.goBack(); AsyncStorage.removeItem("selectedFriendList"); AsyncStorage.removeItem("selectedPressed"); }}>
           <Text>취소</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button} onPress={goNext}>
+        <TouchableOpacity style={styles.bottomButton} onPress={goNext}>
           <Text>다음</Text>
         </TouchableOpacity>
       </View>

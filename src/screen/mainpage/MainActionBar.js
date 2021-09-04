@@ -22,6 +22,8 @@ import {
 import axios from 'axios';
 import styles from './styles';
 import MainTab1 from './MainTab1';
+import DeviceInfo from 'react-native-device-info';
+
 
 
 export default function MainActionBar(props) {

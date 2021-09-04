@@ -11,6 +11,8 @@ import { useSafeArea } from 'react-native-safe-area-context';
 import { ListItem, Avatar } from 'react-native-elements'
 import Friendstyle from './Friendstyle';
 import { NetworkInfo } from "react-native-network-info";
+import DeviceInfo from 'react-native-device-info';
+
 
 export default function FriendsListScreen({ navigation }) {
   const myContext = useContext(AppContext);
@@ -45,15 +47,24 @@ export default function FriendsListScreen({ navigation }) {
     console.log(contactNAMEList);
 
     let ip4="";
-        NetworkInfo.getIPV4Address().then(ipv4Address => {
-            ip4=ipv4Address;
-        });
-
-    // let emailset ="";
+    NetworkInfo.getIPV4Address().then(ipv4Address => {
+      ip4=ipv4Address;
+    });
+    
     AsyncStorage.getItem("email").then((result) => { if (result !== null) { setEmail(result); } });
+
+    let apiaddress ="";
+    if (DeviceInfo.isEmulator()){
+      apiaddress="http://"+"localhost"+":8080/user_contacts/"+emailset;
+    }
+    else{
+      apiaddress="http://"+"192.168.12.94"+":8080/user_contacts/"+emailset;
+    }
+    
+    
     console.log("here!" + emailset);
     // axios
-    //       .post(`http://${ip4}:8080/user_contacts/${emailset}`, {
+    //       .post(apiaddress, {
     //         list: contactList,
     //       }
     //       , {

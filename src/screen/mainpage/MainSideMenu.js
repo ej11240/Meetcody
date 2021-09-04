@@ -8,6 +8,7 @@ import FriendsListScreen from './FriendsListScreen';
 import { StatusBar, View } from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import InviteAcceptScreen from '../inviteacceptpage/InviteAcceptScreen';
+import DeviceInfo from 'react-native-device-info';
 
 
 const drawerMarginTopHeight = Platform.OS === 'android' ? 50+StatusBar.currentHeight :getStatusBarHeight()+50 ;
