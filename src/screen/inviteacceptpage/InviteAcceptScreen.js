@@ -25,7 +25,7 @@ export default function InviteAcceptScreen({ navigation }) {
                 // if 회원 -> 수락화면
             } else {
                 // 회원 아님 -> 구글 로그인, 휴대폰 번호 입력
-                myContext.setIsSignIn(false);
+                // myContext.setIsSignIn(false);
             }
         });
 
