@@ -1170,6 +1170,13 @@
   "resolved" "https://registry.npmjs.org/@react-native-community/masked-view/-/masked-view-0.1.11.tgz"
   "version" "0.1.11"
 
+"@react-native-community/push-notification-ios@^1.10.0":
+  "integrity" "sha512-NPtJ9QtSI5ODLWfeT0UA9CiEJPsjw47WlZ4E5uViLjOb0P9iRtkb0Stavg9zwt3NpQA2KPxtZGd0GmLM7Rui3w=="
+  "resolved" "https://registry.npmjs.org/@react-native-community/push-notification-ios/-/push-notification-ios-1.10.0.tgz"
+  "version" "1.10.0"
+  dependencies:
+    "invariant" "^2.2.4"
+
 "@react-native-google-signin/google-signin@^6.0.1":
   "integrity" "sha512-8Kyt3v6JcAQoJqZau3z4Mj+8R5Zv1yB8TfL/iCrB6ZI9lIR7gm4wuNzgpNSjX7OwNTboyhBek9Tjx8qJj7a6Mw=="
   "resolved" "https://registry.npmjs.org/@react-native-google-signin/google-signin/-/google-signin-6.0.1.tgz"
@@ -6164,6 +6171,11 @@
     "@react-native-picker/picker" "^1.8.3"
     "lodash.isequal" "^4.5.0"
 
+"react-native-push-notification@^8.1.0":
+  "integrity" "sha512-ZgRM1rYm+nhnACval7k44T28PwwtFdzG3pv/rhrVHgrioAbxzQOVFJOny956w42s5av4PPcKsr8yJ940HJCKTA=="
+  "resolved" "https://registry.npmjs.org/react-native-push-notification/-/react-native-push-notification-8.1.0.tgz"
+  "version" "8.1.0"
+
 "react-native-ratings@8.0.4":
   "integrity" "sha512-Xczu5lskIIRD6BEdz9A0jDRpEck/SFxRqiglkXi0u67yAtI1/pcJC76P4MukCbT8K4BPVl+42w83YqXBoBRl7A=="
   "resolved" "https://registry.npmjs.org/react-native-ratings/-/react-native-ratings-8.0.4.tgz"
@@ -6270,7 +6282,7 @@
     "escape-string-regexp" "2.0.0"
     "invariant" "2.2.4"
 
-"react-native@*", "react-native@^0.0.0-0 || ^0.60.6 || ^0.61.5 || ^0.62.2 || ^0.63.2 || ^0.64.0 || ^0.65.0 || 1000.0.0", "react-native@>=0.41.2", "react-native@>=0.47", "react-native@>=0.57", "react-native@>=0.60", "react-native@>=0.64.0", "react-native@0.64.2":
+"react-native@*", "react-native@^0.0.0-0 || ^0.60.6 || ^0.61.5 || ^0.62.2 || ^0.63.2 || ^0.64.0 || ^0.65.0 || 1000.0.0", "react-native@>=0.33", "react-native@>=0.41.2", "react-native@>=0.47", "react-native@>=0.57", "react-native@>=0.58.4", "react-native@>=0.60", "react-native@>=0.64.0", "react-native@0.64.2":
   "integrity" "sha512-Ty/fFHld9DcYsFZujXYdeVjEhvSeQcwuTGXezyoOkxfiGEGrpL/uwUZvMzwShnU4zbbTKDu2PAm/uwuOittRGA=="
   "resolved" "https://registry.npmjs.org/react-native/-/react-native-0.64.2.tgz"
   "version" "0.64.2"
@@ -6331,7 +6343,7 @@
     "react-shallow-renderer" "^16.13.1"
     "scheduler" "^0.20.1"
 
-"react@^16.0 || ^17.0.0", "react@>=16.0.0-alpha.12", "react@16 || 17", "react@17.0.1":
+"react@^16.0 || ^17.0.0", "react@>=16.0.0-alpha.12", "react@>=16.6.3", "react@16 || 17", "react@17.0.1":
   "integrity" "sha512-lG9c9UuMHdcAexXtigOZLX8exLWkW0Ku29qPRU8uhF2R9BN96dLCt0psvzPLlHc5OWkgymP3qwTRgbnw5BKx3w=="
   "resolved" "https://registry.npmjs.org/react/-/react-17.0.1.tgz"
   "version" "17.0.1"

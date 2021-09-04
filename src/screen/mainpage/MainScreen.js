@@ -22,6 +22,8 @@ import MainActionBar from './MainActionBar';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NetworkInfo } from "react-native-network-info";
 import DeviceInfo from 'react-native-device-info';
+import PushNotificationIOS from '@react-native-community/push-notification-ios';
+
 
 
 export default function MainScreen({ navigation }) {
