@@ -57,10 +57,10 @@ function LoadContactScreen({ navigation }) {
     Contacts.getAll()
       .then(contacts => {
         myContext.setUserInfo({ ...myContext.userInfo, ...{ contact: contacts } });
-        AsyncStorage.setItem("contact", {contacts} ).then(
-          () => AsyncStorage.getItem("contact")
-          .then((result)=>console.log('load contact',result))
-       );
+      //   AsyncStorage.setItem("contact", {contacts} ).then(
+      //     () => AsyncStorage.getItem("contact")
+      //     .then((result)=>console.log('load contact',result))
+      //  );
       })
       .catch(e => {
         alert(JSON.stringify(e));

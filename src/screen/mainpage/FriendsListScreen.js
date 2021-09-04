@@ -10,6 +10,7 @@ import axios from 'axios';
 import { useSafeArea } from 'react-native-safe-area-context';
 import { ListItem, Avatar } from 'react-native-elements'
 import Friendstyle from './Friendstyle';
+import { NetworkInfo } from "react-native-network-info";
 
 export default function FriendsListScreen({ navigation }) {
   const myContext = useContext(AppContext);
@@ -43,11 +44,16 @@ export default function FriendsListScreen({ navigation }) {
     console.log(contactList);
     console.log(contactNAMEList);
 
+    let ip4="";
+        NetworkInfo.getIPV4Address().then(ipv4Address => {
+            ip4=ipv4Address;
+        });
+
     // let emailset ="";
     AsyncStorage.getItem("email").then((result) => { if (result !== null) { setEmail(result); } });
     console.log("here!" + emailset);
     // axios
-    //       .post(`http://localhost:8080/user_contacts/${emailset}`, {
+    //       .post(`http://${ip4}:8080/user_contacts/${emailset}`, {
     //         list: contactList,
     //       }
     //       , {

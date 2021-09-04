@@ -11,7 +11,7 @@ import axios from 'axios';
 import AppContext from '../../context/AppContext';
 import SignInHeader from './SignInHeader';
 import styles from './SignInStyles';
-
+import { NetworkInfo } from "react-native-network-info";
 
 function NicknameScreen({ navigation }) {
     const myContext = useContext(AppContext);
@@ -28,8 +28,12 @@ function NicknameScreen({ navigation }) {
     };
 
     const postUserData = () => {
+        let ip4="";
+        NetworkInfo.getIPV4Address().then(ipv4Address => {
+            ip4=ipv4Address;
+        });
         axios
-            .post('http://localhost:8080/signup', {
+            .post(`http://${ip4}:8080/signup`, {
                 familyName: myContext.userInfo.user.familyName,
                 givenName: myContext.userInfo.user.givenName,
                 email: myContext.userInfo.user.email,
@@ -52,7 +56,7 @@ function NicknameScreen({ navigation }) {
                         .then((result)=>console.log(result))
                      );
                      AsyncStorage.setItem("userid",JSON.stringify(response.data) ).then(
-                        () => AsyncStorage.getItem("userid").then((result)=>console.log(result))
+                        () => AsyncStorage.getItem("userid").then((result)=>{console.log("유저아이디:",result);})
                      );
                      AsyncStorage.setItem("name",nickname ).then(
                         () => AsyncStorage.getItem("name").then((result)=>console.log(result))

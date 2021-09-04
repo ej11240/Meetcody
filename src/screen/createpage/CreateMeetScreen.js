@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useState} from 'react';
+import { useContext,useState} from 'react';
 import {
   View,
   Text,
@@ -25,6 +25,8 @@ import DatePicker from 'react-native-date-ranges';
 import DateRangePicker from './DateRangePicker';
 import {black} from 'react-native-paper/lib/typescript/styles/colors';
 import axios from 'axios';
+import AppContext from '../../context/AppContext';
+import { NetworkInfo } from "react-native-network-info";
 
 //import {CalendarList} from 'react-native-common-date-picker';
 // import {Modal} from 'react-native-modals';
@@ -44,32 +46,41 @@ export default function CreateMeetScreen({navigation}) {
   const [numList, setNumList] = React.useState([]);
   const [nameList, setNameList] = React.useState([]);
   const [userid, setUserid] = React.useState("");
+  const myContext = useContext(AppContext);
 
   const sendMeetCreation = () => {
     AsyncStorage.getItem("email").then((result) => { if (result !== null) { setEmail(result); } });
     AsyncStorage.getItem("selectedFriendsName").then((result) => { if (result !== null) { setNameList( JSON.parse(result)); console.log(result);} });
     AsyncStorage.getItem("selectedFriendsNum").then((result) => { if (result !== null) { setNumList(JSON.parse(result)); } });
-    AsyncStorage.getItem("userid").then((result) => { if (result !== null) { setUserid(JSON.parse(result)); } });
+    AsyncStorage.getItem("userid").then((result) => { if (result !== null) { setUserid(JSON.parse(result)); console.log("ㅇㅠ저 아디",result);} });
     console.log( numList, nameList, emailset, meetName, meetStartDate,meetEndDate, hours,minutes, likeTime, likePlace, validity);
     // console.log("~~~~~~~~~");
-    axios.post(`http://localhost:8080/testingin`,{
-      meetInfo:[meetName, meetStartDate,meetEndDate, hours,minutes, likeTime, likePlace, validity],
-      friendName: nameList,
-      friendNum: numList,
+    // axios.post(`http://localhost:8080/testingin`,{
+    //   meetInfo:[meetName, meetStartDate,meetEndDate, hours,minutes, likeTime, likePlace, validity],
+    //   friendName: nameList,
+    //   friendNum: numList,
 
-    }
-      , {
-        headers: {
-          'Content-Type': 'application/json; charset=UTF-8'
-        }
-      }).then(function (response) {
-      console.log(JSON.stringify(response.data));
-    })
-    .catch(function (error) {
-      console.log(error);
+    // }
+    //   , {
+    //     headers: {
+    //       'Content-Type': 'application/json; charset=UTF-8'
+    //     }
+    //   }).then(function (response) {
+    //   console.log(JSON.stringify(response.data));
+    // })
+    // .catch(function (error) {
+    //   console.log(error);
+    // });
+
+    let ip4="";
+    NetworkInfo.getIPV4Address().then(ipv4Address => {
+      // console.log(ipv4Address);
+      ip4=ipv4Address;
+      // alert(ipv4Address);
     });
+
     axios
-      .post(`http://localhost:8080/createMeeting`, {
+      .post(`http://${ip4}:8080/createMeeting`, {
         meetInfo:[meetName, meetStartDate,meetEndDate, hours,minutes, likeTime, likePlace, validity],
         friendName: nameList,
         friendNum: numList,
@@ -84,12 +95,16 @@ export default function CreateMeetScreen({navigation}) {
       )
       .then(function (response) {
         console.log(JSON.stringify(response.data));
+        Alert.alert('약속이 생성되었습니다.');
+        AsyncStorage.removeItem("selectedFriendBoolList"); AsyncStorage.removeItem("selectedPressed"); 
+        myContext.setIsSignIn(true);
       })
       .catch(function (error) {
         console.log(error);
+        Alert.alert('서버와 통신 실패! 다시 제출해주세요!');
       });
 
-      // AsyncStorage.removeItem("selectedFriendBoolList"); AsyncStorage.removeItem("selectedPressed"); 
+      
   }
 
   const androidBool = Platform.OS === 'android' ? true : false;
@@ -254,7 +269,7 @@ export default function CreateMeetScreen({navigation}) {
         <TouchableOpacity
           activeOpacity={1}
           style={styles.button}
-          onPress={() => {Alert.alert('약속이 생성되었습니다.'); sendMeetCreation();}}>
+          onPress={() => { sendMeetCreation();}}>
           <Text>저장</Text>
         </TouchableOpacity>
       </View>

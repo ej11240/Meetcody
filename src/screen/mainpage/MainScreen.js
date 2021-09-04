@@ -20,12 +20,18 @@ import MainTab1 from './MainTab1';
 import MainTab2 from './MainTab2';
 import MainActionBar from './MainActionBar';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { NetworkInfo } from "react-native-network-info";
 
 export default function MainScreen({ navigation }) {
     const myContext = useContext(AppContext);
     const [showmessage1, setShowmessage1] = React.useState(true);
     const [currentTab, setCurrentTab] = React.useState(1);
     const [emailset, setEmail] = React.useState("");
+
+    let ip4="";
+        NetworkInfo.getIPV4Address().then(ipv4Address => {
+            ip4=ipv4Address;
+        });
 
     const showmessageFunc1 = () => {
         setShowmessage1(!showmessage1);

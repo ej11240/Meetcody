@@ -11,6 +11,7 @@ import {
   ScrollView,
   SafeAreaView,
   StatusBar,
+  AsyncStorage
 } from 'react-native';
 import ActionBar from 'react-native-action-bar';
 import axios from 'axios';
@@ -18,11 +19,45 @@ import styles from './styles';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {DrawerActions} from '@react-navigation/native';
 import Entypo from 'react-native-vector-icons/Entypo';
+import { NetworkInfo } from "react-native-network-info";
 
 export default function MainTab1(props) {
+  const [userid, setUserid] = React.useState("");
   const navigation = () => props.navigation.navigate('InviteFriend');
   const navigation2 = () => props.navigation.navigate('DetailScreen');
+  const [meetList, setMeetList] = React.useState([]);
 
+  
+
+  AsyncStorage.getItem("userid").then((result) => { if (result !== null) { setUserid(JSON.parse(result)); console.log("ㅇㅠ저 아디",result);} });
+  React.useEffect(() => {
+
+    let ip4="";
+    NetworkInfo.getIPV4Address().then(ipv4Address => {
+      // console.log(ipv4Address);
+      ip4=ipv4Address;
+      // alert(ipv4Address);
+    });
+
+    axios
+      .post(`http://${ip4}:8080/meetlist`, {
+        userid:[userid]
+      }
+        , {
+          headers: {
+            'Content-Type': 'application/json; charset=UTF-8'
+          }
+        }
+      )
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        // setMeetList.
+         
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, [])
   return (
     <>
       <View style={styles.mainScreen1ContentView}>

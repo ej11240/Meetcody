@@ -7,6 +7,7 @@ import Postcode from '@actbase/react-daum-postcode';
 import { useState } from 'react';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { NetworkInfo } from "react-native-network-info";
 
 // TODO("리덕스로 상태관리")
 // TODO("네비게이션 구조 전체적으로 다시 봐야함...")
@@ -48,8 +49,12 @@ export default function InviteAcceptScreen({ navigation }) {
     
 
     const test =()=>{
+        let ip4="";
+        NetworkInfo.getIPV4Address().then(ipv4Address => {
+            ip4=ipv4Address;
+        });
         axios
-            .post('http://localhost:8080/calendergettest', {
+            .post(`http://${ip4}:8080/calendergettest`, {
                 // input1: "서울특별시 도봉구 시루봉로 58",
                 // input2: "서울특별시 도봉구 시루봉로 58"
             }

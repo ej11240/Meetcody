@@ -17,6 +17,7 @@ import MainActionBar from '../mainpage/MainActionBar';
 import { ListItem, Avatar } from 'react-native-elements';
 import Contacts from 'react-native-contacts';
 import AppContext from '../../context/AppContext';
+import { NetworkInfo } from "react-native-network-info";
 
 function useForceUpdate(){
   const [value, setValue] = React.useState(0); // integer state
@@ -65,6 +66,14 @@ export default function InviteFriendScreen( { navigation}) {
   
 
   const getContacts =()=>{
+
+    let ip4="";
+    NetworkInfo.getIPV4Address().then(ipv4Address => {
+      // console.log(ipv4Address);
+      ip4=ipv4Address;
+      // alert(ipv4Address);
+    });
+    
     setContactList([]);
     setContactNAMEList([]);
     setDATA([]);
@@ -88,7 +97,7 @@ export default function InviteFriendScreen( { navigation}) {
     AsyncStorage.getItem("email").then((result) => { if (result !== null) { setEmail(result); } });
     console.log("here!" + emailset);
     // axios
-    //       .post(`http://localhost:8080/user_contacts/${emailset}`, {
+    //       .post(`http://${ip4}:8080/user_contacts/${emailset}`, {
     //         list: contactList,
     //       }
     //       , {
@@ -117,6 +126,9 @@ export default function InviteFriendScreen( { navigation}) {
 
 
   React.useEffect(() => {
+    
+    
+
     getContacts();
     // // if(contactList.length==0){
     // //   getContacts();
