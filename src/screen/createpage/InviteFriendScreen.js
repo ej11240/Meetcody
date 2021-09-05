@@ -18,28 +18,28 @@ export default function InviteFriendScreen({navigation}) {
     navigation.navigate('CreateMeet');
   };
   return (
-    <SafeAreaView style={styles.mainSafeViewArea}>
-      {androidBool === true ? (
-        <StatusBar barStyle="dark-content" hidden={false} translucent={true} />
-      ) : (
-        <></>
-      )}
-      <MainActionBar navigation={navigation} title={'CreateMeetScreen'} />
+      <SafeAreaView style={styles.mainSafeViewArea}>
+        {androidBool === true ? (
+            <StatusBar barStyle="dark-content" hidden={false} translucent={true} />
+        ) : (
+            <></>
+        )}
+        <MainActionBar navigation={navigation} title={'CreateMeetScreen'} />
 
-      <ScrollView style={styles.contents}>
-        <Text style={{paddingTop: 20}}>친구 초대</Text>
-      </ScrollView>
-      <View style={styles.fixToText}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.goBack()}>
-          <Text>취소</Text>
-        </TouchableOpacity>
+        <ScrollView style={styles.contents}>
+          <Text style={{paddingTop: 20}}>친구 초대</Text>
+        </ScrollView>
+        <View style={styles.fixToText}>
+          <TouchableOpacity
+              style={styles.bottomButton}
+              onPress={() => navigation.goBack()}>
+            <Text>취소</Text>
+          </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button} onPress={goNext}>
-          <Text>다음</Text>
-        </TouchableOpacity>
-      </View>
-    </SafeAreaView>
+          <TouchableOpacity style={styles.bottomButton} onPress={goNext}>
+            <Text>다음</Text>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
   );
 }
