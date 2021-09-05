@@ -37,10 +37,10 @@ function NicknameScreen({ navigation }) {
 
         let apiaddress = "";
         if (DeviceInfo.isEmulator()) {
-            apiaddress = "http://" + "localhost" + ":8080/v1/user/signup";
+            apiaddress = "http://" + "localhost" + ":8080/v1/user";
         }
         else {
-            apiaddress = "http://" + "192.168.12.94" + ":8080/v1/user/signup";
+            apiaddress = "http://" + "192.168.12.94" + ":8080/v1/user";
             console.log("~~~~~~~",apiaddress);
         }
 
@@ -50,7 +50,7 @@ function NicknameScreen({ navigation }) {
                 givenName: myContext.userInfo.user.givenName,
                 email: myContext.userInfo.user.email,
                 phone: myContext.userInfo.phoneNumber,
-                username: nickname,
+                nickname: nickname,
                 picture: myContext.userInfo.user.photo
             })
             .then(function (response) {

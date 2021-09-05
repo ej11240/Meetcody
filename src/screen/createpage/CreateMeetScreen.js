@@ -88,19 +88,38 @@ export default function CreateMeetScreen({ navigation }) {
 
     let apiaddress = "";
     if (DeviceInfo.isEmulator()) {
-      apiaddress = "http://localhost:8080/v1/invitation/createMeeting";
+      apiaddress = "http://localhost:8080/v1/invitation";
       console.log(apiaddress);
     }
     else {
-      apiaddress = "http://" + "192.168.12.94" + ":8080/v1/invitation/createMeeting";
+      apiaddress = "http://" + "192.168.12.94" + ":8080/v1/invitation";
     }
+
+    /**
+     * 서버 통신용 장소 추천 여부를 반환하는 함수
+     * @param {*} likePlace 2일 때만 장소를 추천받는다.
+     * @returns 2일 때만 true를 리턴하고, 그 외의 경우는 false를 리턴한다.
+     */
+    function isReccomendLocation(likePlace) {
+      if (likePlace === "2") {
+        return true;
+      } return false;
+    }
+    console.log(meetStartDate);
     axios
       .post(apiaddress, {
-        meetInfo: [meetName, meetStartDate, meetEndDate, hours, minutes, likeTime, likePlace, validity],
-        friendName: nameList,
-        friendNum: numList,
-        email: [emailSet],
-        userid: [userid]
+        title: meetName,
+        startRange: meetStartDate,
+        endRange: meetEndDate,
+        durationHour: hours,
+        durationMinute: minutes,
+        preferTime: likeTime,
+        isRecommendLocation: isReccomendLocation(likePlace),
+        validHour: validity,
+        // organizerEmail: [emailSet],
+        organizerEmail: "test1@gmail.com",
+        guestNameList: nameList,
+        guestPhoneList: numList,
       }
         , {
           headers: {

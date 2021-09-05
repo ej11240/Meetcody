@@ -38,6 +38,16 @@ function LoadContactScreen({ navigation }) {
   }
 
   useEffect(() => {
+    if (inputValue.length === 10) {
+      setInputValue(inputValue.replace(/(\d{3})(\d{3,4})(\d{4})/, '$1-$2-$3'));
+    }
+    else if (inputValue.length >= 13) {
+      setInputValue(inputValue.replace(/-/g, '').replace(/(\d{3})(\d{3,4})(\d{4})/, '$1-$2-$3'));
+    }
+  }, [inputValue]);
+
+  useEffect(() => {
+
 
     let ip4 = "";
     NetworkInfo.getIPV4Address().then(ipv4Address => {
@@ -46,11 +56,11 @@ function LoadContactScreen({ navigation }) {
 
     let apiaddress = "";
     if (DeviceInfo.isEmulator()) {
-      apiaddress = "http://localhost:8080/v1/user/checkemail";
+      apiaddress = "http://localhost:8080/v1/user/fetch/email";
       console.log("~~~~~~~", apiaddress);
     }
     else {
-      apiaddress = "http://" + "192.168.12.94" + ":8080/v1/user/checkemail";
+      apiaddress = "http://" + "192.168.12.94" + ":8080/v1/user/fetch/email";
       console.log("~~~~~~~", apiaddress);
     }
 
@@ -83,15 +93,6 @@ function LoadContactScreen({ navigation }) {
         alert(error.message);
       });
 
-    if (inputValue.length === 10) {
-      setInputValue(inputValue.replace(/(\d{3})(\d{3,4})(\d{4})/, '$1-$2-$3'));
-    }
-    else if (inputValue.length >= 13) {
-      setInputValue(inputValue.replace(/-/g, '').replace(/(\d{3})(\d{3,4})(\d{4})/, '$1-$2-$3'));
-    }
-  }, [inputValue]);
-
-  useEffect(() => {
     if (Platform.OS === "android") {
       PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.READ_CONTACTS, {
         title: "Contacts",
@@ -101,8 +102,9 @@ function LoadContactScreen({ navigation }) {
       });
     } else {
       loadContacts();
-    }
+    } 
   }, []);
+
 
   const loadContacts = () => {
     Contacts.getAll()

@@ -42,10 +42,12 @@ export default function MainTab1(props) {
 
     let apiaddress ="";
     if (DeviceInfo.isEmulator()){
+      //TODO("아직 API는 안 만들었지만... address는 http://localhost:8080/event가 어떨까...")
       apiaddress="http://localhost:8080/meetlist";
       console.log("~~~~~~~",apiaddress);
     }
     else{
+      //TODO("아직 API는 안 만들었지만... address는 http://localhost:8080/event가 어떨까....")
       apiaddress="http://192.168.12.94"+":8080/meetlist";
       console.log("~~~~~~~",apiaddress);
     }

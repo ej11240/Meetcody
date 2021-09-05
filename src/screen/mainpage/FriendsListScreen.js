@@ -55,10 +55,10 @@ export default function FriendsListScreen({ navigation }) {
 
     let apiaddress ="";
     if (DeviceInfo.isEmulator()){
-      apiaddress="http://"+"localhost"+":8080/user_contacts/"+emailset;
+      apiaddress="http://"+"localhost"+":8080/v1/friend/email/"+emailset;
     }
     else{
-      apiaddress="http://"+"192.168.12.94"+":8080/user_contacts/"+emailset;
+      apiaddress="http://"+"192.168.12.94"+":8080/v1/friend/email/"+emailset;
     }
     
     

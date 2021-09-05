@@ -100,10 +100,10 @@ export default function InviteFriendScreen( { navigation}) {
 
     let apiaddress ="";
     if (DeviceInfo.isEmulator()){
-      apiaddress="http://"+"localhost"+":8080/v1/friend/contacts/"+emailSet;
+      apiaddress="http://"+"localhost"+":8080/v1/friend/email/"+emailSet;
     }
     else{
-      apiaddress="http://"+"192.168.12.94"+":8080/v1/friend/contacts/"+emailSet;
+      apiaddress="http://"+"192.168.12.94"+":8080/v1/friend/email/"+emailSet;
     }
 
     

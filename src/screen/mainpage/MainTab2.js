@@ -33,10 +33,10 @@ export default function MainTab2(props) {
   });
   let apiaddress ="";
   if (DeviceInfo.isEmulator()){
-    apiaddress="http://"+"localhost"+":8080/createMeeting";
+    apiaddress="http://"+"localhost"+":8080/invitation";
   }
   else{
-    apiaddress="http://"+"192.168.12.94"+":8080/createMeeting";
+    apiaddress="http://"+"192.168.12.94"+":8080/invitation";
   }
 
         
